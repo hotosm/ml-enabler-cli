@@ -6,6 +6,8 @@ setup(
     py_modules=['ml_enabler'],
     install_requires=[
         'Click',
+        'mercantile==1.0.4',
+        'aiohttp==3.5.4'
     ],
     entry_points='''
         [console_scripts]

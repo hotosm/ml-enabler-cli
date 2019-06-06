@@ -1,8 +1,8 @@
 import mercantile
 from osm_task_metrics.osm import OSMData
-import requests
 import base64
 import json
+import requests
 
 def bbox_to_tiles(bbox, zoom):
     bbox_list = bbox_str_to_list(bbox)
@@ -22,9 +22,10 @@ def get_building_area(tile):
 def tile_to_geojson(tile):
     return mercantile.feature(tile)
 
-def get_prediction(tile_url, endpoint):
+async def get_prediction(session, tile_url, endpoint):
+    print('getting prediction', tile_url)
     image_b64 = url_image_to_b64_string(tile_url)
-    raw_prediction = get_raw_prediction(endpoint, image_b64)
+    raw_prediction = await get_raw_prediction(session, endpoint, image_b64)
     print('predicted', tile_url)
     #print('pred', raw_prediction)
     return raw_prediction
@@ -47,7 +48,7 @@ def url_image_to_b64_string(url):
     b64_string = b64.decode("utf-8")
     return b64_string
 
-def get_raw_prediction(endpoint, image_b64):
+async def get_raw_prediction(session, endpoint, image_b64):
     instances = [
         {
             'image_bytes': {
@@ -55,6 +56,8 @@ def get_raw_prediction(endpoint, image_b64):
             }
         }
     ]
-    payload = json.dumps({'instances': instances})
-    response = requests.post(endpoint, data=payload)
-    return json.loads(response.content)['predictions']
+    payload = {'instances': instances}
+    async with session.post(endpoint, json=payload) as response:
+        json_response = await response.json()
+        print(json_response)
+        return json_response['predictions']
