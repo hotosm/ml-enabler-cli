@@ -12,11 +12,12 @@ import asyncio
               )
 @click.option('--zoom', type=int, default=8, help='Zoom level to fetch tiles at')
 @click.option('--token', help='Access token for tiles URL', default=None)
+@click.option('--concurrency', help='Number of simultaneous requests to make to prediction image', type=int, default=16)
 @click.pass_context
-def fetch(ctx, bbox, tile_url, zoom, token):
+def fetch(ctx, bbox, tile_url, zoom, token, concurrency):
     endpoint = ctx.obj['endpoint']
     async def predict_tiles(tile_urls):
-        conn = aiohttp.TCPConnector(limit=16)
+        conn = aiohttp.TCPConnector(limit=concurrency)
         async with aiohttp.ClientSession(connector=conn) as session:
             futures = [get_prediction(session, tile_url, endpoint) for tile_url in tile_urls]
             results = await asyncio.gather(*futures)
