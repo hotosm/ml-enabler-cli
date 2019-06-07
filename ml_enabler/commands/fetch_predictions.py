@@ -2,6 +2,7 @@ import click
 from ml_enabler.utils import bbox_to_tiles, get_building_area, get_prediction
 import aiohttp
 import asyncio
+import json
 
 @click.command('fetch_predictions', short_help='Fetch model predictions for a bbox')
 @click.option('--bbox', help='Bounding box to fetch predictions for, as <left>,<bottom>,<right>,<top>')
@@ -13,26 +14,31 @@ import asyncio
 @click.option('--zoom', type=int, default=8, help='Zoom level to fetch tiles at')
 @click.option('--token', help='Access token for tiles URL', default=None)
 @click.option('--concurrency', help='Number of simultaneous requests to make to prediction image', type=int, default=16)
+@click.option('--outfile', help='Filename to write results to', type=click.File('w'))
 @click.pass_context
-def fetch(ctx, bbox, tile_url, zoom, token, concurrency):
+def fetch(ctx, bbox, tile_url, zoom, token, concurrency, outfile):
     endpoint = ctx.obj['endpoint']
-    async def predict_tiles(tile_urls):
+    async def predict_tiles(tiles, zoom, tile_url):
         conn = aiohttp.TCPConnector(limit=concurrency)
-        async with aiohttp.ClientSession(connector=conn) as session:
-            futures = [get_prediction(session, tile_url, endpoint) for tile_url in tile_urls]
+        timeout = aiohttp.ClientTimeout(total=None, connect=None, sock_connect=None, sock_read=None)
+        async with aiohttp.ClientSession(connector=conn, timeout=timeout) as session:
+            futures = [get_prediction(session, tile, endpoint, zoom, token, tile_url) for tile in tiles]
             results = await asyncio.gather(*futures)
-            print('all results', results)
+            # outfile = open('test_results2.json', 'w')
+            outfile.write(json.dumps(results, indent=2))
+            outfile.close()
+            
 
-    def get_tile_url(tile):
-        return tile_url.format(x=tile.x, y=tile.y, z=zoom, token=token)
+    # def get_tile_url(tile, tile_url, zoom):
+    #     return tile_url.format(x=tile.x, y=tile.y, z=zoom, token=token)
 
     # print('bbox', bbox)
 
     tiles = list(bbox_to_tiles(bbox, zoom))
-    print('no of tiles', len(tiles))
-    tile_urls = list(map(get_tile_url, tiles))
+    # print('no of tiles', len(tiles))
+    # tile_urls = list(map(get_tile_url, tiles))
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(predict_tiles(tile_urls))
+    loop.run_until_complete(predict_tiles(tiles, zoom, tile_url))
     print('done processing tiles')
     # asyncio.run(predict_tiles(tile_urls))
 
