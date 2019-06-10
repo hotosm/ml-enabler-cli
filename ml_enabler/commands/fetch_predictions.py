@@ -1,8 +1,6 @@
-import click
-from ml_enabler.utils import bbox_to_tiles, get_building_area, get_prediction
-import aiohttp
 import asyncio
-import json
+import click
+from ml_enabler.predictors.LookingGlassPredictor import LookingGlassPredictor
 
 @click.command('fetch_predictions', short_help='Fetch model predictions for a bbox')
 @click.option('--bbox', help='Bounding box to fetch predictions for, as <left>,<bottom>,<right>,<top>')
@@ -18,32 +16,10 @@ import json
 @click.pass_context
 def fetch(ctx, bbox, tile_url, zoom, token, concurrency, outfile):
     endpoint = ctx.obj['endpoint']
-    async def predict_tiles(tiles, zoom, tile_url):
-        conn = aiohttp.TCPConnector(limit=concurrency)
-        timeout = aiohttp.ClientTimeout(total=None, connect=None, sock_connect=None, sock_read=None)
-        async with aiohttp.ClientSession(connector=conn, timeout=timeout) as session:
-            futures = [get_prediction(session, tile, endpoint, zoom, token, tile_url) for tile in tiles]
-            results = await asyncio.gather(*futures)
-            # outfile = open('test_results2.json', 'w')
-            outfile.write(json.dumps(results, indent=2))
-            outfile.close()
-            
-
-    # def get_tile_url(tile, tile_url, zoom):
-    #     return tile_url.format(x=tile.x, y=tile.y, z=zoom, token=token)
-
-    # print('bbox', bbox)
-
-    tiles = list(bbox_to_tiles(bbox, zoom))
-    # print('no of tiles', len(tiles))
-    # tile_urls = list(map(get_tile_url, tiles))
+    predictor = LookingGlassPredictor(endpoint, tile_url, token)
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(predict_tiles(tiles, zoom, tile_url))
+    loop.run_until_complete(predictor.predict(bbox, concurrency, outfile))
     print('done processing tiles')
-    # asyncio.run(predict_tiles(tile_urls))
-
-    # areas = [get_building_area(tile) for tile in tiles]
-    # predictions = [get_prediction(tile_url, endpoint) for tile_url in tile_urls]
 
 
 
