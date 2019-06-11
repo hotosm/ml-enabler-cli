@@ -10,7 +10,7 @@ from .BasePredictor import BasePredictor
 class LookingGlassPredictor(BasePredictor):
     zoom = 18
 
-    async def predict(self, bbox, concurrency, out_file):
+    async def predict(self, bbox, concurrency, outfile):
         '''
             Return predictions for given bbox
         '''
