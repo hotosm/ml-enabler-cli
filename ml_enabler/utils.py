@@ -7,7 +7,6 @@ import random
 
 def bbox_to_tiles(bbox, zoom):
     bbox_list = bbox_str_to_list(bbox)
-    print('bbox_list', bbox_list)
     tiles = mercantile.tiles(*bbox_str_to_list(bbox), zooms=[zoom])
     return tiles
 
@@ -23,10 +22,6 @@ def get_building_area(tile):
 def tile_to_geojson(tile):
     return mercantile.feature(tile)
 
-def get_prediction_as_float(raw_prediction):
-    #FIXME: actually implement this
-    return random.random()
-
 def get_tile_quadkey(tile):
     return mercantile.quadkey(tile)
 
@@ -34,23 +29,6 @@ def get_tile_center(tile):
     #FIXME: actually implement this, right now returns point on a corner
     bounds = mercantile.bounds(tile)
     return [bounds.west, bounds.south]
-
-async def get_prediction(session, tile, endpoint, zoom, token, tile_url_format):
-    tile_url = tile_url_format.format(x=tile.x, y=tile.y, z=zoom, token=token)
-    image_b64 = await url_image_to_b64_string(session, tile_url)
-    raw_prediction = await get_raw_prediction(session, endpoint, image_b64)
-    float_value = get_prediction_as_float(raw_prediction)
-    tile_centroid = get_tile_center(tile)
-    quadkey = get_tile_quadkey(tile)
-    #print('pred', raw_prediction)
-    return {
-        'quadkey': quadkey,
-        'center': tile_centroid,
-        'data': {
-            'ml_prediction': float_value,
-            'osm_building_area': random.random() #FIXME
-        }
-    }
 
 async def url_image_to_b64_string(session, url):
     """Convert a url to a UTF-8 coded string of base64 bytes.
@@ -72,16 +50,7 @@ async def url_image_to_b64_string(session, url):
     b64_string = b64.decode("utf-8")
     return b64_string
 
-async def get_raw_prediction(session, endpoint, image_b64):
-    instances = [
-        {
-            'image_bytes': {
-                'b64': image_b64
-            }
-        }
-    ]
-    payload = {'instances': instances}
+async def get_raw_prediction(session, endpoint, payload):
     async with session.post(endpoint, json=payload) as response:
         json_response = await response.json()
-        print('got prediction')
-        return json_response['predictions']
+        return json_response
