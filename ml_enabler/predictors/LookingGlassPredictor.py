@@ -9,7 +9,11 @@ import numpy as np
 from .BasePredictor import BasePredictor
 
 class LookingGlassPredictor(BasePredictor):
-    zoom = 18
+    default_zoom = 18
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.weight = self.model_opts['weight'] if 'weight' in self.model_opts else 'auto'
 
     async def predict(self, bbox, concurrency, outfile, errfile):
         '''
@@ -17,10 +21,11 @@ class LookingGlassPredictor(BasePredictor):
         '''
         tiles = list(bbox_to_tiles(bbox, self.zoom))
         print(f'Processing {len(tiles)} tiles')
+        weight = self.get_weight(bbox)
         conn = aiohttp.TCPConnector(limit=concurrency)
         timeout = aiohttp.ClientTimeout(total=None, connect=None, sock_connect=None, sock_read=None)
         async with aiohttp.ClientSession(connector=conn, timeout=timeout) as session:
-            futures = [self.predict_tile(session, tile) for tile in tiles]
+            futures = [self.predict_tile(session, tile, weight) for tile in tiles]
             results = await asyncio.gather(*futures)
             errors = list(filter(lambda r: 'error' in r, results))
             successes = list(filter(lambda r: 'error' not in r, results))
@@ -29,7 +34,7 @@ class LookingGlassPredictor(BasePredictor):
             outfile.write(json.dumps(successes, indent=2))
             outfile.close()
         
-    async def predict_tile(self, session, tile):
+    async def predict_tile(self, session, tile, weight):
         image_url = self.tile_url.format(x=tile.x, y=tile.y, z=self.zoom, token=self.token)
         tile_centroid = get_tile_center(tile)
         quadkey = get_tile_quadkey(tile)
@@ -43,7 +48,7 @@ class LookingGlassPredictor(BasePredictor):
             }
         try:    
             raw_prediction = await get_raw_prediction(session, self.endpoint, payload)
-            data = self.get_data_from_prediction(raw_prediction)
+            data = self.get_data_from_prediction(raw_prediction, weight)
         except Exception as e:
             return {
                 'quadkey': quadkey,
@@ -70,11 +75,19 @@ class LookingGlassPredictor(BasePredictor):
             'instances': instances
         }
 
-    def get_data_from_prediction(self, raw_prediction):
+    def get_data_from_prediction(self, raw_prediction, weight):
         if not raw_prediction or 'predictions' not in raw_prediction:
             raise InvalidData('Improper predictions format from model')        
         predictions = raw_prediction['predictions']
         np_arr = np.array(predictions)
         return {
-            'ml_prediction': get_thresh_weighted_sum(np_arr)
+            'ml_prediction': get_thresh_weighted_sum(np_arr, weight=weight)
         }
+
+    def get_weight(self, bbox):
+        #FIXME: if auto, calculate weight based on latitude
+        if self.weight != 'auto':
+            return float(self.weight)
+        else: #FIXME: calculate 'auto'
+            return 0.76
+
