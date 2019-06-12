@@ -1,6 +1,7 @@
-from ml_enabler.utils import bbox_to_tiles, get_building_area, url_image_to_b64_string,\
+from ml_enabler.utils import bbox_to_tiles, url_image_to_b64_string,\
                         get_raw_prediction, get_tile_center, get_tile_quadkey
 from ml_enabler.utils_postproc import get_thresh_weighted_sum
+from ml_enabler.exceptions import InvalidData
 import aiohttp
 import asyncio
 import json
@@ -10,7 +11,7 @@ from .BasePredictor import BasePredictor
 class LookingGlassPredictor(BasePredictor):
     zoom = 18
 
-    async def predict(self, bbox, concurrency, outfile):
+    async def predict(self, bbox, concurrency, outfile, errfile):
         '''
             Return predictions for given bbox
         '''
@@ -21,16 +22,34 @@ class LookingGlassPredictor(BasePredictor):
         async with aiohttp.ClientSession(connector=conn, timeout=timeout) as session:
             futures = [self.predict_tile(session, tile) for tile in tiles]
             results = await asyncio.gather(*futures)
-            outfile.write(json.dumps(results, indent=2))
+            errors = list(filter(lambda r: 'error' in r, results))
+            successes = list(filter(lambda r: 'error' not in r, results))
+            errfile.write(json.dumps(errors, indent=2))
+            errfile.close()
+            outfile.write(json.dumps(successes, indent=2))
             outfile.close()
         
     async def predict_tile(self, session, tile):
         image_url = self.tile_url.format(x=tile.x, y=tile.y, z=self.zoom, token=self.token)
-        payload = await self.get_payload(session, image_url)
-        raw_prediction = await get_raw_prediction(session, self.endpoint, payload)
-        data = self.get_data_from_prediction(raw_prediction)
         tile_centroid = get_tile_center(tile)
         quadkey = get_tile_quadkey(tile)
+        try:
+            payload = await self.get_payload(session, image_url)
+        except Exception as e:
+            return {
+                'quadkey': quadkey,
+                'error': str(e),
+                'error_type': 'image'
+            }
+        try:    
+            raw_prediction = await get_raw_prediction(session, self.endpoint, payload)
+            data = self.get_data_from_prediction(raw_prediction)
+        except Exception as e:
+            return {
+                'quadkey': quadkey,
+                'error': str(e),
+                'error_type': 'model'
+            }
         #print('pred', raw_prediction)
         return {
             'quadkey': quadkey,
@@ -52,15 +71,10 @@ class LookingGlassPredictor(BasePredictor):
         }
 
     def get_data_from_prediction(self, raw_prediction):
-        if raw_prediction and 'predictions' in raw_prediction:
-            predictions = raw_prediction['predictions']
-            np_arr = np.array(predictions)
-            return {
-                'ml_prediction': get_thresh_weighted_sum(np_arr)
-            }
-        else:
-            return {
-                'error': 'Error fetching prediction'
-            }
-
-
+        if not raw_prediction or 'predictions' not in raw_prediction:
+            raise InvalidData('Improper predictions format from model')        
+        predictions = raw_prediction['predictions']
+        np_arr = np.array(predictions)
+        return {
+            'ml_prediction': get_thresh_weighted_sum(np_arr)
+        }

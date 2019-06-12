@@ -8,7 +8,8 @@ setup(
         'Click',
         'numpy',
         'mercantile==1.0.4',
-        'aiohttp==3.5.4'
+        'aiohttp==3.5.4',
+        'backoff==1.8.0'
     ],
     entry_points='''
         [console_scripts]

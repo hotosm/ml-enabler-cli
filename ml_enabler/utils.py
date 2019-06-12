@@ -1,9 +1,12 @@
+from .exceptions import InvalidModelResponse, ImageFetchError
 import mercantile
-from osm_task_metrics.osm import OSMData
+# from osm_task_metrics.osm import OSMData
+import backoff
 import base64
 import json
-import requests
+# import requests
 import random
+
 
 def bbox_to_tiles(bbox, zoom):
     bbox_list = bbox_str_to_list(bbox)
@@ -15,9 +18,9 @@ def bbox_str_to_list(bbox: str):
     bboxList = bbox.split(',')
     return list(map(float, bboxList))
 
-def get_building_area(tile):
-    geojson = mercantile.feature(tile)
-    return OSMData(geojson).building_area()
+# def get_building_area(tile):
+#     geojson = mercantile.feature(tile)
+#     return OSMData(geojson).building_area()
 
 def tile_to_geojson(tile):
     return mercantile.feature(tile)
@@ -30,6 +33,7 @@ def get_tile_center(tile):
     bounds = mercantile.bounds(tile)
     return [bounds.west, bounds.south]
 
+@backoff.on_exception(backoff.expo, ImageFetchError, max_tries=3)
 async def url_image_to_b64_string(session, url):
     """Convert a url to a UTF-8 coded string of base64 bytes.
     Notes
@@ -42,7 +46,7 @@ async def url_image_to_b64_string(session, url):
     response = await session.get(url)
     print('fetching image', url)
     if not response.status == 200:
-        print('Error getting image from {}'.format(url))
+        raise ImageFetchError()
 
     # Convert to base64 and then encode in UTF-8 for future transmission
     response_text = await response.read()
@@ -50,7 +54,10 @@ async def url_image_to_b64_string(session, url):
     b64_string = b64.decode("utf-8")
     return b64_string
 
+@backoff.on_exception(backoff.expo, InvalidModelResponse, max_tries=5)
 async def get_raw_prediction(session, endpoint, payload):
     async with session.post(endpoint, json=payload) as response:
+        if response.status != 200:
+            raise InvalidModelResponse(response.status)
         json_response = await response.json()
         return json_response

@@ -13,12 +13,13 @@ from ml_enabler.predictors.LookingGlassPredictor import LookingGlassPredictor
 @click.option('--token', help='Access token for tiles URL', default=None)
 @click.option('--concurrency', help='Number of simultaneous requests to make to prediction image', type=int, default=16)
 @click.option('--outfile', help='Filename to write results to', type=click.File('w'))
+@click.option('--errfile', help='Filename to write errors to', type=click.File('w'))
 @click.pass_context
-def fetch(ctx, bbox, tile_url, zoom, token, concurrency, outfile):
+def fetch(ctx, bbox, tile_url, zoom, token, concurrency, outfile, errfile):
     endpoint = ctx.obj['endpoint']
     predictor = LookingGlassPredictor(endpoint, tile_url, token)
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(predictor.predict(bbox, concurrency, outfile))
+    loop.run_until_complete(predictor.predict(bbox, concurrency, outfile, errfile))
     print('done processing tiles')
 
 
