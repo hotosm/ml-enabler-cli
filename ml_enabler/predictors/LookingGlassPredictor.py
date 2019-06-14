@@ -1,6 +1,6 @@
 from ml_enabler.utils import bbox_to_tiles, url_image_to_b64_string,\
                         get_raw_prediction, get_tile_center, get_tile_quadkey
-from ml_enabler.utils_postproc import get_thresh_weighted_sum
+from ml_enabler.utils.postproc import get_thresh_weighted_sum
 from ml_enabler.exceptions import InvalidData
 import aiohttp
 import asyncio

@@ -1,4 +1,5 @@
-from .exceptions import InvalidModelResponse, ImageFetchError
+from ml_enabler.exceptions import InvalidModelResponse, ImageFetchError
+from ml_enabler.utils.osm import OSMData
 import mercantile
 # from osm_task_metrics.osm import OSMData
 import backoff
@@ -18,9 +19,9 @@ def bbox_str_to_list(bbox: str):
     bboxList = bbox.split(',')
     return list(map(float, bboxList))
 
-# def get_building_area(tile):
-#     geojson = mercantile.feature(tile)
-#     return OSMData(geojson).building_area()
+async def get_building_area(session, tile):
+    geojson = mercantile.feature(tile)
+    return await OSMData(geojson).building_area(session)
 
 def tile_to_geojson(tile):
     return mercantile.feature(tile)
