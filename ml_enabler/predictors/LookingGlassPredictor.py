@@ -29,7 +29,8 @@ class LookingGlassPredictor(BasePredictor):
             version = await self.get_version(session)
             metadata = {
                 'model_name': self.name,
-                'version': version
+                'version': version,
+                'bbox': bbox
             }
             futures = [self.predict_tile(session, tile, weight) for tile in tiles]
             results = await asyncio.gather(*futures)
