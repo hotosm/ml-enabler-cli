@@ -10,6 +10,7 @@ from .BasePredictor import BasePredictor
 
 class LookingGlassPredictor(BasePredictor):
     default_zoom = 18
+    name = 'looking_glass'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -25,17 +26,27 @@ class LookingGlassPredictor(BasePredictor):
         conn = aiohttp.TCPConnector(limit=concurrency)
         timeout = aiohttp.ClientTimeout(total=None, connect=None, sock_connect=None, sock_read=None)
         async with aiohttp.ClientSession(connector=conn, timeout=timeout) as session:
+            version = await self.get_version(session)
+            metadata = {
+                'model_name': self.name,
+                'version': version
+            }
             futures = [self.predict_tile(session, tile, weight) for tile in tiles]
             results = await asyncio.gather(*futures)
             errors = list(filter(lambda r: 'error' in r, results))
             successes = list(filter(lambda r: 'error' not in r, results))
+            out_data = {
+                'metadata': metadata,
+                'predictions': successes
+            }
             errfile.write(json.dumps(errors, indent=2))
             errfile.close()
-            outfile.write(json.dumps(successes, indent=2))
+            outfile.write(json.dumps(out_data, indent=2))
             outfile.close()
         
     async def predict_tile(self, session, tile, weight):
         image_url = self.tile_url.format(x=tile.x, y=tile.y, z=self.zoom, token=self.token)
+        prediction_endpoint = f'{self.endpoint}models/{self.name}:predict'
         tile_centroid = get_tile_center(tile)
         quadkey = get_tile_quadkey(tile)
         try:
@@ -47,7 +58,7 @@ class LookingGlassPredictor(BasePredictor):
                 'error_type': 'image'
             }
         try:    
-            raw_prediction = await get_raw_prediction(session, self.endpoint, payload)
+            raw_prediction = await get_raw_prediction(session, prediction_endpoint, payload)
             data = self.get_data_from_prediction(raw_prediction, weight)
         except Exception as e:
             return {
@@ -74,6 +85,16 @@ class LookingGlassPredictor(BasePredictor):
         return {
             'instances': instances
         }
+
+    async def get_version(self, session):
+        version_url = f'{self.endpoint}models/{self.name}'
+        res = await session.get(version_url)
+        if res.status != 200:
+            raise Exception(f'Unable to fetch version information from {version_url}')
+        data = await res.json()
+        return data['model_version_status'][0]['version']
+
+
 
     def get_data_from_prediction(self, raw_prediction, weight):
         if not raw_prediction or 'predictions' not in raw_prediction:

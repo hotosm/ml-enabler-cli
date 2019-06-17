@@ -11,7 +11,8 @@ setup(
         'aiohttp==3.5.4',
         'backoff==1.8.0',
         'pytest==4.6.3',
-        'Shapely==1.6.4.post2'
+        'Shapely==1.6.4.post2',
+        'area==1.1.1'
     ],
     entry_points='''
         [console_scripts]
