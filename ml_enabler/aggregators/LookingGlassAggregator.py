@@ -15,7 +15,11 @@ class LookingGlassAggregator(BaseAggregator):
         async with aiohttp.ClientSession(connector=conn, timeout=timeout) as session:
             futures = [self.get_values_for_quadkey(session, quadkey) for quadkey in agg_quadkeys]
             results = await asyncio.gather(*futures)
-            self.outfile.write(json.dumps(results, indent=2))
+            out_data = {
+                'metadata': self.source_metadata,
+                'predictions': results
+            }
+            self.outfile.write(json.dumps(out_data, indent=2))
             self.outfile.close()
 
     def get_agg_quadkeys(self):
