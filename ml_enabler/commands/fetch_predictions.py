@@ -3,6 +3,7 @@ import click
 from ml_enabler.predictors.LookingGlassPredictor import LookingGlassPredictor
 
 @click.command('fetch_predictions', short_help='Fetch model predictions for a bbox')
+@click.option('--endpoint', default='http://localhost:8501/v1/')
 @click.option('--bbox', help='Bounding box to fetch predictions for, as <left>,<bottom>,<right>,<top>')
 # @click.option('--tile-url', default='https://api.mapbox.com/v4/digitalglobe.2lnpeioh/{z}/{x}/{y}.jpg?access_token={token}')
 @click.option('--tile-url',
@@ -16,8 +17,7 @@ from ml_enabler.predictors.LookingGlassPredictor import LookingGlassPredictor
 @click.option('--outfile', help='Filename to write results to', type=click.File('w'))
 @click.option('--errfile', help='Filename to write errors to', type=click.File('w'))
 @click.pass_context
-def fetch(ctx, bbox, tile_url, zoom, token, lg_weight, concurrency, outfile, errfile):
-    endpoint = ctx.obj['endpoint']
+def fetch(ctx, endpoint, bbox, tile_url, zoom, token, lg_weight, concurrency, outfile, errfile):
     model_opts = {
         'weight': lg_weight
     }
