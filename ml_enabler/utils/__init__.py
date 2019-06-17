@@ -1,5 +1,6 @@
 from ml_enabler.exceptions import InvalidModelResponse, ImageFetchError
 from ml_enabler.utils.osm import OSMData
+from shapely.geometry import box
 import mercantile
 # from osm_task_metrics.osm import OSMData
 import backoff
@@ -7,7 +8,6 @@ import base64
 import json
 # import requests
 import random
-
 
 def bbox_to_tiles(bbox, zoom):
     bbox_list = bbox_str_to_list(bbox)
@@ -30,9 +30,8 @@ def get_tile_quadkey(tile):
     return mercantile.quadkey(tile)
 
 def get_tile_center(tile):
-    #FIXME: actually implement this, right now returns point on a corner
-    bounds = mercantile.bounds(tile)
-    return [bounds.west, bounds.south]
+    bbox = mercantile.bounds(tile)
+    return box(bbox[0], bbox[1], bbox[2], bbox[3]).centroid.wkt
 
 @backoff.on_exception(backoff.expo, ImageFetchError, max_tries=3)
 async def url_image_to_b64_string(session, url):
@@ -62,3 +61,4 @@ async def get_raw_prediction(session, endpoint, payload):
             raise InvalidModelResponse(response.status)
         json_response = await response.json()
         return json_response
+
