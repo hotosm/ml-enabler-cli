@@ -9,4 +9,4 @@ def test_bbox_str_to_list():
 
 def test_get_tile_center():
   tile = mercantile.Tile(39, 72, 7)
-  assert(get_tile_center(tile).wkt) == 'POINT (-68.90625 -23.23509017801799)'
+  assert(get_tile_center(tile)) == 'POINT (-68.90625 -23.23509017801799)'

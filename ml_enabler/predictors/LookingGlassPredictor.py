@@ -69,8 +69,8 @@ class LookingGlassPredictor(BasePredictor):
         #print('pred', raw_prediction)
         return {
             'quadkey': quadkey,
-            'center': tile_centroid,
-            'data': data
+            'centroid': tile_centroid,
+            'predictions': data
         }
     
     async def get_payload(self, session, image_url):

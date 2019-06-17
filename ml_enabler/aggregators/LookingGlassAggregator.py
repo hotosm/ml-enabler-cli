@@ -34,13 +34,13 @@ class LookingGlassAggregator(BaseAggregator):
             Returns consolidated data values for a quadkey
         '''
         filtered_quadkeys = list(filter(lambda d: d['quadkey'].startswith(quadkey), self.source_data))
-        total_ml_building_area = functools.reduce(lambda a,b: int(a + b['data']['ml_prediction']), filtered_quadkeys, 0)
+        total_ml_building_area = functools.reduce(lambda a,b: int(a + b['predictions']['ml_prediction']), filtered_quadkeys, 0)
         tile = mercantile.quadkey_to_tile(quadkey)
         osm_building_area = await get_building_area(session, tile)
         return {
             'quadkey': quadkey,
-            'center': get_tile_center(tile),
-            'data': {
+            'centroid': get_tile_center(tile),
+            'predictions': {
                 'ml_prediction': total_ml_building_area,
                 'osm_building_area': osm_building_area,
                 'difference': total_ml_building_area / osm_building_area
