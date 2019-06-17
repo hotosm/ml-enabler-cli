@@ -31,7 +31,7 @@ def get_tile_quadkey(tile):
 
 def get_tile_center(tile):
     bbox = mercantile.bounds(tile)
-    return box(bbox[0], bbox[1], bbox[2], bbox[3]).centroid.wkt
+    return f'SRID=4326;{box(bbox[0], bbox[1], bbox[2], bbox[3]).centroid.wkt}'
 
 @backoff.on_exception(backoff.expo, ImageFetchError, max_tries=3)
 async def url_image_to_b64_string(session, url):
