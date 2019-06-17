@@ -9,7 +9,8 @@ setup(
         'numpy',
         'mercantile==1.0.4',
         'aiohttp==3.5.4',
-        'backoff==1.8.0'
+        'backoff==1.8.0',
+        'area==1.1.1'
     ],
     entry_points='''
         [console_scripts]
