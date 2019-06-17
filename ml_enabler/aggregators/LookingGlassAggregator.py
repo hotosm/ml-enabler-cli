@@ -42,8 +42,6 @@ class LookingGlassAggregator(BaseAggregator):
             'centroid': get_tile_center(tile),
             'predictions': {
                 'ml_prediction': total_ml_building_area,
-                'osm_building_area': osm_building_area,
-                'difference': total_ml_building_area / osm_building_area
-                # 'difference': total_ml_building_area / osm_building_area
+                'osm_building_area': osm_building_area
             }
         }
