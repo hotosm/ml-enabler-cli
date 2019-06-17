@@ -10,7 +10,8 @@ setup(
         'mercantile==1.0.4',
         'aiohttp==3.5.4',
         'backoff==1.8.0',
-        'pytest==4.6.3
+        'pytest==4.6.3',
+        'Shapely==1.6.4.post2'
     ],
     entry_points='''
         [console_scripts]
