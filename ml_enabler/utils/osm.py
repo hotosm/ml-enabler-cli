@@ -5,7 +5,6 @@ import os
 import subprocess
 import tempfile
 import backoff
-from pdb import set_trace
 
 def get_osm(aoi):
     # convert AOI to bounding box
