@@ -55,7 +55,7 @@ class OSMData(object):
 
     @classmethod
     def to_geojson(cls, osmdata):
-        """ Convert OSM data to GeoJSON using osmtogeojson """      
+        """ Convert OSM data to GeoJSON using osmtogeojson """
         with tempfile.TemporaryDirectory() as outdir:
             outfile = os.path.join(outdir, 'osm.osm')
             # logger.debug('Writing OSM data to temp file %s' % outfile)
@@ -101,4 +101,3 @@ class OSMData(object):
         # q = '[out:xml];way["building"="yes"](%s);out geom;' % geoq
         # logger.debug(q)
         return q
-     

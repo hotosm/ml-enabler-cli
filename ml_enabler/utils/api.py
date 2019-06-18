@@ -39,4 +39,3 @@ def post_prediction_tiles(api_url, prediction_id, predictions):
     if response.status_code != 200:
         raise Exception('Error posting tiles for prediction')
     return True
-
