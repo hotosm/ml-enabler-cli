@@ -1,6 +1,6 @@
 from ml_enabler.utils import bbox_to_tiles, url_image_to_b64_string,\
                         get_raw_prediction, get_tile_center, get_tile_quadkey
-from ml_enabler.utils.postproc import get_thresh_weighted_sum
+from ml_enabler.utils.postproc import get_thresh_weighted_sum, get_pixel_area
 from ml_enabler.exceptions import InvalidData
 import aiohttp
 import asyncio
@@ -22,7 +22,7 @@ class LookingGlassPredictor(BasePredictor):
         '''
         tiles = list(bbox_to_tiles(bbox, self.zoom))
         print(f'Processing {len(tiles)} tiles')
-        weight = self.get_weight(bbox)
+        weight = self.get_weight(bbox, self.zoom)
         conn = aiohttp.TCPConnector(limit=concurrency)
         timeout = aiohttp.ClientTimeout(total=None, connect=None, sock_connect=None, sock_read=None)
         async with aiohttp.ClientSession(connector=conn, timeout=timeout) as session:
@@ -96,8 +96,6 @@ class LookingGlassPredictor(BasePredictor):
         data = await res.json()
         return data['model_version_status'][0]['version']
 
-
-
     def get_data_from_prediction(self, raw_prediction, weight):
         if not raw_prediction or 'predictions' not in raw_prediction:
             raise InvalidData('Improper predictions format from model')        
@@ -107,10 +105,10 @@ class LookingGlassPredictor(BasePredictor):
             'ml_prediction': get_thresh_weighted_sum(np_arr, weight=weight)
         }
 
-    def get_weight(self, bbox):
-        #FIXME: if auto, calculate weight based on latitude
+    def get_weight(self, bbox, zoom):
         if self.weight != 'auto':
             return float(self.weight)
-        else: #FIXME: calculate 'auto'
-            return 0.76
+        else:
+            latitude = float(bbox.split(',')[1])
+            return get_pixel_area(latitude, zoom)
 
