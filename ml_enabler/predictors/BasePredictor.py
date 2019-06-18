@@ -1,7 +1,6 @@
 
 class BasePredictor:
-    
-    zoom = 18 # set zoom level for Predictor, defaults to 18
+    zoom = 18  # set zoom level for Predictor, defaults to 18
 
     def __init__(self, endpoint, tile_url, token, zoom, model_opts):
         self.endpoint = endpoint
@@ -18,4 +17,3 @@ class BasePredictor:
 
     async def predict_tile(self, tile):
         raise NotImplementedError('Implement predict_tile method in your Prediction class')
-

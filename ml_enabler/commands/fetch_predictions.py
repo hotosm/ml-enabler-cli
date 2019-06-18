@@ -1,6 +1,5 @@
 import asyncio
 import click
-from ml_enabler.predictors.LookingGlassPredictor import LookingGlassPredictor
 from ml_enabler.predictors import predictors
 
 
@@ -29,7 +28,3 @@ def fetch(ctx, name, endpoint, bbox, tile_url, zoom, token, lg_weight, concurren
     loop = asyncio.get_event_loop()
     loop.run_until_complete(predictor.predict(bbox, concurrency, outfile, errfile))
     print('done processing tiles')
-
-
-
-

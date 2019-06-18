@@ -8,6 +8,7 @@ import json
 import numpy as np
 from .BasePredictor import BasePredictor
 
+
 class LookingGlassPredictor(BasePredictor):
     default_zoom = 18
     name = 'looking_glass'
@@ -45,7 +46,7 @@ class LookingGlassPredictor(BasePredictor):
             errfile.close()
             outfile.write(json.dumps(out_data, indent=2))
             outfile.close()
-        
+
     async def predict_tile(self, session, tile, weight):
         image_url = self.tile_url.format(x=tile.x, y=tile.y, z=self.zoom, token=self.token)
         prediction_endpoint = f'{self.endpoint}models/{self.name}:predict'
@@ -59,7 +60,7 @@ class LookingGlassPredictor(BasePredictor):
                 'error': str(e),
                 'error_type': 'image'
             }
-        try:    
+        try:
             raw_prediction = await get_raw_prediction(session, prediction_endpoint, payload)
             data = self.get_data_from_prediction(raw_prediction, weight)
         except Exception as e:
@@ -68,13 +69,13 @@ class LookingGlassPredictor(BasePredictor):
                 'error': str(e),
                 'error_type': 'model'
             }
-        #print('pred', raw_prediction)
+        # print('pred', raw_prediction)
         return {
             'quadkey': quadkey,
             'centroid': tile_centroid,
             'predictions': data
         }
-    
+
     async def get_payload(self, session, image_url):
         image_base64 = await url_image_to_b64_string(session, image_url)
         instances = [
@@ -98,7 +99,7 @@ class LookingGlassPredictor(BasePredictor):
 
     def get_data_from_prediction(self, raw_prediction, weight):
         if not raw_prediction or 'predictions' not in raw_prediction:
-            raise InvalidData('Improper predictions format from model')        
+            raise InvalidData('Improper predictions format from model')
         predictions = raw_prediction['predictions']
         np_arr = np.array(predictions)
         return {
@@ -111,4 +112,3 @@ class LookingGlassPredictor(BasePredictor):
         else:
             latitude = float(bbox.split(',')[1])
             return get_pixel_area(latitude, zoom)
-

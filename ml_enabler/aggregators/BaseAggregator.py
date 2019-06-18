@@ -1,7 +1,7 @@
 import json
 
+
 class BaseAggregator:
-    
     def __init__(self, zoom, infile, outfile, errfile):
         data = json.load(infile)
         self.zoom = zoom
@@ -15,5 +15,3 @@ class BaseAggregator:
             Write out aggregations to outfile
         '''
         raise NotImplementedError('Implement aggregate method in your Prediction class')
-
-
