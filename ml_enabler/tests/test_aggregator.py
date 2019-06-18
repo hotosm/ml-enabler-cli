@@ -1,5 +1,3 @@
-from ml_enabler.aggregators.LookingGlassAggregator import LookingGlassAggregator
-from ml_enabler.commands.aggregate_predictions import aggregate
 import json
 from click.testing import CliRunner
 from ml_enabler.cli import main_group
@@ -13,7 +11,7 @@ def test_looking_glass_aggregator():
 
     runner = CliRunner()
     result = runner.invoke(main_group,
-             ['aggregate_predictions', '--zoom', 14, '--infile', infile, '--outfile', outfile, '--errfile', errfile])
+                           ['aggregate_predictions', '--zoom', 14, '--infile', infile, '--outfile', outfile, '--errfile', errfile])
     current_results = json.load(open(outfile))
     assert(result.exit_code) == 0
     assert(expected_results == current_results)

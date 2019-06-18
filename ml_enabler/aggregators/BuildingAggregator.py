@@ -1,6 +1,5 @@
 from ml_enabler.aggregators.BaseAggregator import BaseAggregator
-from ml_enabler.utils import get_building_area, get_tile_center
-import functools
+from ml_enabler.utils import get_building_area
 import mercantile
 import aiohttp
 import asyncio

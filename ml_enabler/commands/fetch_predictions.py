@@ -1,8 +1,6 @@
 import asyncio
 import click
-from ml_enabler.predictors.LookingGlassPredictor import LookingGlassPredictor
 from ml_enabler.predictors import predictors
-
 
 
 @click.command('fetch_predictions', short_help='Fetch model predictions for a bbox')
