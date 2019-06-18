@@ -15,6 +15,7 @@ class LookingGlassAggregator(BaseAggregator):
         async with aiohttp.ClientSession(connector=conn, timeout=timeout) as session:
             futures = [self.get_values_for_quadkey(session, quadkey) for quadkey in agg_quadkeys]
             results = await asyncio.gather(*futures)
+            self.source_metadata['zoom'] = self.zoom
             out_data = {
                 'metadata': self.source_metadata,
                 'predictions': results
