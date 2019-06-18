@@ -79,6 +79,7 @@ class OSMData(object):
         if self.geojson is not None:
             return self.geojson
         q = self.build_query()
+        print(q)
         resp = await session.get(self.url, data=q)
         if resp.status == 200:
             self.geojson = self.to_geojson(await resp.text())

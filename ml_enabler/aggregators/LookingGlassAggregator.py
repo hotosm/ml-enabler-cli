@@ -8,11 +8,11 @@ import json
 
 class LookingGlassAggregator(BaseAggregator):
 
-    async def aggregate(self):
+    async def aggregate(self, loop):
         agg_quadkeys = self.get_agg_quadkeys()
         conn = aiohttp.TCPConnector(limit=3) # FIXME: make concurrency a param
         timeout = aiohttp.ClientTimeout(total=None, connect=None, sock_connect=None, sock_read=None)        
-        async with aiohttp.ClientSession(connector=conn, timeout=timeout) as session:
+        async with aiohttp.ClientSession(connector=conn, timeout=timeout, loop=loop) as session:
             futures = [self.get_values_for_quadkey(session, quadkey) for quadkey in agg_quadkeys]
             results = await asyncio.gather(*futures)
             out_data = {
@@ -43,7 +43,7 @@ class LookingGlassAggregator(BaseAggregator):
             'predictions': {
                 'ml_prediction': total_ml_building_area,
                 'osm_building_area': osm_building_area,
-                'difference': total_ml_building_area / osm_building_area
+                # 'difference': total_ml_building_area / osm_building_area
                 # 'difference': total_ml_building_area / osm_building_area
             }
         }

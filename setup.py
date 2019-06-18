@@ -12,7 +12,8 @@ setup(
         'backoff==1.8.0',
         'pytest==4.6.3',
         'Shapely==1.6.4.post2',
-        'area==1.1.1'
+        'area==1.1.1',
+        '-e git+git@github.com:hotosm/ml-enabler-cli.git@d44686d69fee2ca9fa78a5857c64cb6ba194c3b5#egg=ml_enabler_cli'
     ],
     entry_points='''
         [console_scripts]

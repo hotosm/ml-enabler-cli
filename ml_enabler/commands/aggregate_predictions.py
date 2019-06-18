@@ -11,5 +11,5 @@ from ml_enabler.aggregators.LookingGlassAggregator import LookingGlassAggregator
 def aggregate(ctx, zoom, infile, outfile, errfile):
     aggregator = LookingGlassAggregator(zoom, infile, outfile, errfile)
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(aggregator.aggregate())
+    loop.run_until_complete(aggregator.aggregate(loop))
     print('done aggregating')
