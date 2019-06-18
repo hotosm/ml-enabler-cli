@@ -8,6 +8,7 @@ import json
 import numpy as np
 from .BasePredictor import BasePredictor
 
+
 class LookingGlassPredictor(BasePredictor):
     default_zoom = 18
     name = 'looking_glass'
@@ -45,7 +46,7 @@ class LookingGlassPredictor(BasePredictor):
             errfile.close()
             outfile.write(json.dumps(out_data, indent=2))
             outfile.close()
-        
+
     async def predict_tile(self, session, tile, weight):
         image_url = self.tile_url.format(x=tile.x, y=tile.y, z=self.zoom, token=self.token)
         prediction_endpoint = f'{self.endpoint}models/{self.name}:predict'
@@ -111,4 +112,3 @@ class LookingGlassPredictor(BasePredictor):
         else:
             latitude = float(bbox.split(',')[1])
             return get_pixel_area(latitude, zoom)
-

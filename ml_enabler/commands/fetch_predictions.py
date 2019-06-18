@@ -4,6 +4,7 @@ from ml_enabler.predictors.LookingGlassPredictor import LookingGlassPredictor
 from ml_enabler.predictors import predictors
 
 
+
 @click.command('fetch_predictions', short_help='Fetch model predictions for a bbox')
 @click.option('--name', help='Name of the predictor')
 @click.option('--endpoint', default='http://localhost:8501/v1/')
@@ -29,7 +30,3 @@ def fetch(ctx, name, endpoint, bbox, tile_url, zoom, token, lg_weight, concurren
     loop = asyncio.get_event_loop()
     loop.run_until_complete(predictor.predict(bbox, concurrency, outfile, errfile))
     print('done processing tiles')
-
-
-
-

@@ -6,12 +6,12 @@ import aiohttp
 import asyncio
 import json
 
-class LookingGlassAggregator(BaseAggregator):
 
+class LookingGlassAggregator(BaseAggregator):
     async def aggregate(self):
         agg_quadkeys = self.get_agg_quadkeys()
         conn = aiohttp.TCPConnector(limit=3) # FIXME: make concurrency a param
-        timeout = aiohttp.ClientTimeout(total=None, connect=None, sock_connect=None, sock_read=None)        
+        timeout = aiohttp.ClientTimeout(total=None, connect=None, sock_connect=None, sock_read=None)
         async with aiohttp.ClientSession(connector=conn, timeout=timeout) as session:
             futures = [self.get_values_for_quadkey(session, quadkey) for quadkey in agg_quadkeys]
             results = await asyncio.gather(*futures)
@@ -34,8 +34,12 @@ class LookingGlassAggregator(BaseAggregator):
         '''
             Returns consolidated data values for a quadkey
         '''
-        filtered_quadkeys = list(filter(lambda d: d['quadkey'].startswith(quadkey), self.source_data))
-        total_ml_building_area = functools.reduce(lambda a,b: int(a + b['predictions']['ml_prediction']), filtered_quadkeys, 0)
+        filtered_quadkeys = list(
+            filter(lambda d: d['quadkey'].startswith(quadkey), self.source_data))
+        total_ml_building_area = functools.reduce(
+            lambda a, b: int(a + b['predictions']['ml_prediction']),
+            filtered_quadkeys,
+            0)
         tile = mercantile.quadkey_to_tile(quadkey)
         osm_building_area = await get_building_area(session, tile)
         return {

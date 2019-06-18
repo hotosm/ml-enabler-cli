@@ -4,7 +4,7 @@ import numpy as np
 import os
 import subprocess
 import tempfile
-import backoff
+
 
 def get_osm(aoi):
     # convert AOI to bounding box
@@ -33,14 +33,14 @@ class OSMData(object):
         geojson = {
             "type": "FeatureCollection",
             "features": [
-            {
-                "type": "Feature",
-                "geometry" : {
-                    "type": "Point",
-                    "coordinates": [d["lon"], d["lat"]],
-                    },
-                "properties" : d,
-            } for d in data]
+                {
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [d["lon"], d["lat"]],
+                        },
+                    "properties": d,
+                } for d in data]
         }
         return geojson
 
@@ -50,7 +50,7 @@ class OSMData(object):
         try:
             out = subprocess.check_output(cmd.split(' '), stderr=subprocess.STDOUT)
             return out
-        except Exception as e:
+        except Exception:
             raise RuntimeError('Error running %s' % cmd)
 
     @classmethod
@@ -96,9 +96,9 @@ class OSMData(object):
 
         # types = ('node["building"="yes"]', 'way["building"="yes"]', 'relation["building"="yes"]')
         types = ('way["building"]',)
-        #types = ('way["building"="yes"]')
+        # types = ('way["building"="yes"]')
         q = '[out:%s];(%s);out geom;' % (format, ''.join(['%s(%s);' % (t, geoq) for t in types]))
-        #q = '[out:xml];way["building"="yes"](%s);out geom;' % geoq
+        # q = '[out:xml];way["building"="yes"](%s);out geom;' % geoq
         # logger.debug(q)
         return q
      

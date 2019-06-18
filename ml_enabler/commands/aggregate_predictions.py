@@ -3,6 +3,7 @@ import click
 from ml_enabler.aggregators import aggregators
 # from ml_enabler.aggregators.LookingGlassAggregator import LookingGlassAggregator
 
+
 @click.command('aggregate_predictions', short_help='Aggregate predictions to lower zoom levels and add ancillary data')
 @click.option('--name', help='Name of the aggregator', type=str)
 @click.option('--zoom', help='Zoom level to aggregate to', type=int)

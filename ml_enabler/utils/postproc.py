@@ -36,6 +36,7 @@ def get_thresh_weighted_sum(arr, thresh=0., weight=1.):
 
     return weight * np.sum(arr >= thresh)
 
+
 def get_pixel_area(latitude, zoom):
     """Calculate the area per pixel in a tile for a given latitude and zoom.
     Parameters
