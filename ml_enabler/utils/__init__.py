@@ -62,3 +62,7 @@ async def get_raw_prediction(session, endpoint, payload):
         json_response = await response.json()
         return json_response
 
+def bbox_to_polygon_wkt(bbox: list):
+    """ Get a polygon from the bbox """
+
+    return box(bbox[0], bbox[1], bbox[2], bbox[3]).wkt
