@@ -14,7 +14,8 @@ def upload(ctx, infile, api_url):
     model_id = get_model_id(api_url, model_name)
     bbox = metadata['bbox']
     version = metadata['version']
-    prediction_id = post_prediction(api_url, model_id, version, bbox)
+    zoom = metadata['zoom']
+    prediction_id = post_prediction(api_url, model_id, version, zoom, bbox)
     for p in predictions:
         p['prediction_id'] = prediction_id
     post_prediction_tiles(api_url, prediction_id, predictions)

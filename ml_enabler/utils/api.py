@@ -13,13 +13,13 @@ def get_model_id(api_url, model_name):
             return model['modelId']
     raise Exception('Model with that name does not exist')
 
-def post_prediction(api_url, model_id, version, bbox):
+def post_prediction(api_url, model_id, version, zoom, bbox):
     url = f'{api_url}/model/{model_id}/prediction'
     data = {
         'version': f'{version}.0.0',
         'modelId': model_id,
         'bbox': bbox.split(','),
-        'tileZoom': 14 # FIXME:
+        'tileZoom': zoom
     }
     print(data)
     response = requests.post(url, json=data)
