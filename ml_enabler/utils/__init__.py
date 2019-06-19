@@ -18,9 +18,9 @@ def bbox_str_to_list(bbox: str):
     return list(map(float, bboxList))
 
 
-async def get_building_area(session, tile):
+async def get_building_area(session, tile, overpass_url):
     geojson = mercantile.feature(tile)
-    return await OSMData(geojson).building_area(session)
+    return await OSMData(geojson, overpass_url).building_area(session)
 
 
 def tile_to_geojson(tile):

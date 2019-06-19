@@ -25,7 +25,7 @@ class BuildingAggregator(BaseAggregator):
 
         quadkey = prediction['quadkey']
         tile = mercantile.quadkey_to_tile(prediction['quadkey'])
-        osm_building_area = await get_building_area(session, tile)
+        osm_building_area = await get_building_area(session, tile, self.overpass_url)
         return {
             'quadkey': quadkey,
             'centroid': prediction['centroid'],

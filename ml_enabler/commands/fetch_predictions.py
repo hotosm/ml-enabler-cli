@@ -23,8 +23,8 @@ def fetch(ctx, name, endpoint, bbox, tile_url, zoom, token, lg_weight, concurren
     model_opts = {
         'weight': lg_weight
     }
-    predictorClass = predictors[name]
-    predictor = predictorClass(endpoint, tile_url, token, zoom, model_opts)
+    predictor_class = predictors[name]
+    predictor = predictor_class(endpoint, tile_url, token, zoom, model_opts)
     loop = asyncio.get_event_loop()
     loop.run_until_complete(predictor.predict(bbox, concurrency, outfile, errfile))
     print('done processing tiles')

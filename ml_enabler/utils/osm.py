@@ -13,11 +13,9 @@ def get_osm(aoi):
 
 class OSMData(object):
 
-    # url = 'https://lz4.overpass-api.de/api/interpreter'
-    url = 'https://overpass.maptime.in/api/interpreter'
-
-    def __init__(self, aoi):
+    def __init__(self, aoi, overpass_url='https://lz4.overpass-api.de/api/interpreter'):
         self.aoi = aoi
+        self.url = overpass_url
         self.geojson = None
 
     @property
