@@ -41,7 +41,7 @@ class LookingGlassAggregator(BaseAggregator):
             filtered_quadkeys,
             0)
         tile = mercantile.quadkey_to_tile(quadkey)
-        osm_building_area = await get_building_area(session, tile)
+        osm_building_area = await get_building_area(session, tile, self.overpass_url)
         return {
             'quadkey': quadkey,
             'centroid': get_tile_center(tile),
