@@ -27,16 +27,21 @@ To use looking-glass, first ensure looking-glass is hosted either on your comput
 #### Fetch predictions
 
 To fetch predictions for a bbox, use:
-`ml-enabler fetch_predictions --name looking_glass --bbox "-77.14, 38.82, -76.92, 38.95" --endpoint http://looking-glass.com --zoom 16 --outfile /tmp/looking_glass_output.json --errfile /tmp/looking_glass_errors.json`
+```
+ml-enabler fetch_predictions --name looking_glass --bbox "-77.14, 38.82, -76.92, 38.95" --endpoint http://looking-glass.com --tile-url https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.jpg?access_token={token}',
+              default='https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.jpg?access_token={token} --token abcd --zoom 16 --outfile /tmp/looking_glass_output.json --errfile /tmp/looking_glass_errors.json
+```
 
 The predictor options are:
 * bbox - bbox required to fetch predictions for.
 * endpoint - URL where the model is hosted. The model should be following the [TFServing schema](https://www.tensorflow.org/tfx/tutorials/serving/rest_simple)
 * zoom - zoom level to be predicted at. This is usually determined by the model
+* tile-url - tile url to pass to the model. This is usually determined by the model, and will be satellite imagery. For models/apis that don't need tile-url it's safe to ignore
+* token - access token for the fetching tiles from the tile-url
+* lg-weight - custom weight parameter. default is `auto`, and select the weight defined by the model
+* concurrency - number of simultaneous requests to make to the model
 * outfile - output file to store the predictions
 * errfile - in case certain tiles fail to predict, these are stored in the errfile for further inspection
-
-These options are available across all predictors.
 
 ### Adding a new model
 
