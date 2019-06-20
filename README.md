@@ -21,6 +21,7 @@ Aggregators take predictions from a model and then aggregate data at desired zoo
 * `cd ml-enabler-cli`
 * Create a virtualenv (recommended) `python3 -m venv env`
 * `pip install -e`
+* `ml-enabler-cli --help` to check if the installation was successful
 
 ### Looking Glass
 To use looking-glass, first ensure looking-glass is hosted either on your computer or on a GPU cloud instance. Instructions to [this are here](https://render.githubusercontent.com/view/ipynb?commit=ec238b5a39bb4b254fa7ef05b90e1891037ddfc6&enc_url=68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f646576656c6f706d656e74736565642f6c6f6f6b696e672d676c6173732d7075622f656332333862356133396262346232353466613765663035623930653138393130333764646663362f646f636b65725f707265645f6578616d706c652e6970796e62&nwo=developmentseed%2Flooking-glass-pub&path=docker_pred_example.ipynb&repository_id=159652845&repository_type=Repository#Start-the-Looking-Glass-container).
