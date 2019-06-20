@@ -69,7 +69,7 @@ To upload predictions, the model should be registered first. To register the mod
 The `model_name` is available in the `metadata` object of the prediction generated from the `fetch_predictions` command. ml-enabler-cli can upload predictions, using:
 
 ```
-ml-enabler-cli upload_predictions --infile /tmp/looking_glass_aggregated.json --api-url https://ml-enabler.hotosm.org
+ml-enabler-cli upload_predictions --infile /tmp/looking_glass_aggregated.json --api-url https://ml-enabler.hotosm.org/v1
 ```
 
 ### Adding a new model
