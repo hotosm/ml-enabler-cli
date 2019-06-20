@@ -19,6 +19,7 @@ Aggregators take predictions from a model and then aggregate data at desired zoo
 ### Install
 * Git clone this repo
 * `cd ml-enabler-cli`
+* Create a virtualenv (recommended) `python3 -m venv env`
 * `pip install -e`
 
 ### Looking Glass
