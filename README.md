@@ -20,7 +20,7 @@ Aggregators take predictions from a model and then aggregate data at desired zoo
 * Git clone this repo
 * `cd ml-enabler-cli`
 * Create a virtualenv (recommended) `python3 -m venv env`
-* `pip install -e`
+* `pip install -e .`
 * `ml-enabler-cli --help` to check if the installation was successful
 
 ### Looking Glass
@@ -80,8 +80,8 @@ To fetch predictions from a new model, it is required to add a `Predictor`. The 
 
 Similar to a Predictor, the `BaseAggregator` offers a basic interface to work with aggregator logic. To create a new aggregator, subclass the BaseAggregator and write custom logic, and register this in [`aggregators/__init__.py`](https://github.com/hotosm/ml-enabler-cli/blob/master/ml_enabler/aggregators/__init__.py). The `aggregate_predictions` can use the name to map the command to the aggregator. See [`LookingGlassAggregator`](https://github.com/hotosm/ml-enabler-cli/blob/master/ml_enabler/aggregators/LookingGlassAggregator.py) for example.
 
-### Development Setup
+## Development Setup
 
- - Create a virtualenv
- - Run pip install -e .
- - Run `ml-enabler help` to see a list of commands and options
+ - `python3 -m venv env` - create a virtualenv
+ - Run `pip install -e .`
+ - Run `ml-enabler --help` to see a list of commands and options
