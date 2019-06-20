@@ -3,7 +3,7 @@ import aiohttp
 import asyncio
 import json
 from .BasePredictor import BasePredictor
-from ml_enabler.utils import bbox_to_polygon_wkt, get_tile_quadkey, bbox_to_tiles, get_tile_center
+from ml_enabler.utils import bbox_to_polygon_wkt, get_tile_quadkey, bbox_to_tiles, get_tile_center, clip_polygon
 from area import area
 
 
@@ -51,7 +51,8 @@ class BuildingPredictor(BasePredictor):
             # FIXME: validate data
             building_area = 0
             for feature in data['features']:
-                building_area = building_area + area(feature['geometry'])
+                geometry = clip_polygon(tile, feature['geometry'])
+                building_area = building_area + area(geometry)
 
             return {
                 'quadkey': quadkey,
