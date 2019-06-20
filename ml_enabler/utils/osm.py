@@ -76,9 +76,11 @@ class OSMData(object):
         if self.geojson is not None:
             return self.geojson
         q = self.build_query()
+        
         resp = await session.get(self.url, data=q)
         if resp.status == 200:
-            self.geojson = self.to_geojson(await resp.text())
+            text = await resp.text()
+            self.geojson = self.to_geojson(text)
             return self.geojson
         else:
             raise Exception('Error fetching OSM data from Overpass')
