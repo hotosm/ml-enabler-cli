@@ -5,7 +5,7 @@ from ml_enabler.utils.api import get_model_id, post_prediction, post_prediction_
 
 @click.command('upload_predictions', short_help='Upload predictions JSON to the ML Enabler API')
 @click.option('--infile', help='Filename to read predictions JSON from', type=click.File('r'))
-@click.option('--api-url', help='ML Enabler API URL', default='http://localhost:5000/')
+@click.option('--api-url', help='ML Enabler API URL', default='http://localhost:5000/v1')
 @click.pass_context
 def upload(ctx, infile, api_url):
     data = json.load(infile)
