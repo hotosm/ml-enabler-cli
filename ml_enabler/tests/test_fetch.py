@@ -64,3 +64,39 @@ def test_looking_glass_fetch():
     assert(current_results['predictions'][0]['predictions']['ml_prediction'] == expected_results['predictions'][0]['predictions']['ml_prediction'])
 
 
+def test_building_api_fetch():
+    server = MockServer(port=1234)
+    server.start()
+    building_api_response = json.load(open('ml_enabler/tests/fixtures/building_api_response.json'))
+    server.add_json_response('/building_api', building_api_response)
+    outfile = '/tmp/predict_fetch.json'
+    errfile = '/tmp/err.json'
+    endpoint = 'http://localhost:1234/building_api'
+    runner = CliRunner()
+    result = runner.invoke(main_group,
+                           [
+                               'fetch_predictions',
+                               '--name',
+                               'building_api', 
+                               '--zoom',
+                               16,
+                               '--concurrency',
+                               1,
+                               '--bbox',
+                               '-77.14,38.82,-76.92,38.95',
+                               '--token',
+                               'abc',
+                               '--outfile',
+                               outfile,
+                               '--errfile',
+                               errfile,
+                               '--endpoint',
+                               endpoint
+                            ])
+    current_results = json.load(open(outfile))
+    expected_results = json.load(open('ml_enabler/tests/fixtures/building_fetch_expected_output.json'))
+    expected_results['predictions'] = sorted(expected_results['predictions'], key=lambda p: p['quadkey'])
+    current_results['predictions'] = sorted(current_results['predictions'], key=lambda p: p['quadkey'])
+    server.shutdown_server()
+    assert(result.exit_code == 0)
+    assert(current_results == expected_results)
