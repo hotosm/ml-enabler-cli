@@ -1,10 +1,10 @@
 from ml_enabler.exceptions import InvalidModelResponse, ImageFetchError
 from ml_enabler.utils.osm import OSMData
-from shapely.geometry import box
+from shapely.geometry import box, shape, mapping
 import mercantile
-# from osm_task_metrics.osm import OSMData
 import backoff
 import base64
+import json
 
 
 def bbox_to_tiles(bbox, zoom):
@@ -71,3 +71,18 @@ def bbox_to_polygon_wkt(bbox: list):
     """ Get a polygon from the bbox """
 
     return box(bbox[0], bbox[1], bbox[2], bbox[3]).wkt
+
+
+def clip_polygon(tile, polygon):
+    """
+    Clip a polygon to the given tile
+    """
+
+    tilePolygon = shape(mercantile.feature(tile)['geometry'])
+    polygonShape = shape(polygon)
+    if (polygonShape.crosses(tilePolygon)):
+        print('clipping')
+        intersection = tilePolygon.intersection(polygonShape)
+        return json.dumps(mapping(intersection))
+    else:
+        return json.dumps(polygon)
