@@ -1,7 +1,6 @@
 # adapted from https://gist.github.com/eruvanos/f6f62edb368a20aaa880e12976620db8
 
 import requests
-
 from flask import jsonify
 from threading import Thread
 
@@ -27,10 +26,10 @@ class MockServer(Thread):
         requests.get("http://localhost:%s/shutdown" % self.port)
         self.join()
 
-    def add_callback_response(self, url, callback, methods=('GET',)):
+    def add_callback_response(self, url, callback, methods=('GET', 'POST')):
         self.app.add_url_rule(url, view_func=callback, methods=methods)
 
-    def add_json_response(self, url, serializable, methods=('GET',)):
+    def add_json_response(self, url, serializable, methods=('GET', 'POST')):
         def callback():
             return jsonify(serializable)
 
@@ -38,13 +37,3 @@ class MockServer(Thread):
 
     def run(self):
         self.app.run(port=self.port)
-
-
-# if __name__ == '__main__':
-#     mockserver = MockServer(1234)
-#     def overpass_callback():
-#         overpass_response = open('ml_enabler/tests/fixtures/overpass_response.xml').read()
-#         print('overpass', overpass_response)
-#         return overpass_response
-#     mockserver.add_callback_response('/api/interpreter', overpass_callback)
-#     mockserver.run()
