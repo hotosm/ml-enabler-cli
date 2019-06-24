@@ -1,0 +1,352 @@
+{
+  "metadata": {
+    "model_name": "building_api",
+    "version": "1.0.0",
+    "bbox": "-77.14,38.82,-76.92,38.95",
+    "zoom": 16
+  },
+  "predictions": [
+    {
+      "quadkey": "0320100322300121",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.94872935992687)",
+      "predictions": {
+        "ml_prediction": 8766.640672608677,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.94659331893374, -77.135009765625 38.95086540091999, -77.1405029296875 38.95086540091999, -77.1405029296875 38.94659331893374, -77.135009765625 38.94659331893374))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322300123",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.94445714920638)",
+      "predictions": {
+        "ml_prediction": 10100.634830358438,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.94232097947902, -77.135009765625 38.94659331893374, -77.1405029296875 38.94659331893374, -77.1405029296875 38.94232097947902, -77.135009765625 38.94232097947902))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322300301",
+      "centroid": "SRID=4326;POINT (-77.13775634765624 38.94018468102156)",
+      "predictions": {
+        "ml_prediction": 13455.287306488784,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.9380483825641, -77.135009765625 38.94232097947902, -77.1405029296875 38.94232097947902, -77.1405029296875 38.9380483825641, -77.135009765625 38.9380483825641))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322300303",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.93591195538066)",
+      "predictions": {
+        "ml_prediction": 15727.791361932581,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.93377552819721, -77.135009765625 38.9380483825641, -77.1405029296875 38.9380483825641, -77.1405029296875 38.93377552819721, -77.135009765625 38.93377552819721))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322300321",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.93163897229191)",
+      "predictions": {
+        "ml_prediction": 25160.47168060666,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.9295024163866, -77.135009765625 38.93377552819721, -77.1405029296875 38.93377552819721, -77.1405029296875 38.9295024163866, -77.135009765625 38.9295024163866))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322300323",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.92736573176356)",
+      "predictions": {
+        "ml_prediction": 27350.210187388722,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.92522904714053, -77.135009765625 38.9295024163866, -77.1405029296875 38.9295024163866, -77.1405029296875 38.92522904714053, -77.135009765625 38.92522904714053))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322302101",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.9230922338039)",
+      "predictions": {
+        "ml_prediction": 28998.923330835954,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.92095542046727, -77.135009765625 38.92522904714053, -77.1405029296875 38.92522904714053, -77.1405029296875 38.92095542046727, -77.135009765625 38.92095542046727))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322302103",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.91881847842117)",
+      "predictions": {
+        "ml_prediction": 39242.11835950473,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.91668153637508, -77.135009765625 38.92095542046727, -77.1405029296875 38.92095542046727, -77.1405029296875 38.91668153637508, -77.135009765625 38.91668153637508))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322302121",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.91454446562366)",
+      "predictions": {
+        "ml_prediction": 38191.67903188927,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.91240739487224, -77.135009765625 38.91668153637508, -77.1405029296875 38.91668153637508, -77.1405029296875 38.91240739487224, -77.135009765625 38.91240739487224))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322302123",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.91027019541964)",
+      "predictions": {
+        "ml_prediction": 32802.90644161259,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.90813299596704, -77.135009765625 38.91240739487224, -77.1405029296875 38.91240739487224, -77.1405029296875 38.90813299596704, -77.135009765625 38.90813299596704))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322302301",
+      "centroid": "SRID=4326;POINT (-77.13775634765624 38.90599566781741)",
+      "predictions": {
+        "ml_prediction": 31643.442448664675,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.90385833966776, -77.135009765625 38.90813299596704, -77.1405029296875 38.90813299596704, -77.1405029296875 38.90385833966776, -77.135009765625 38.90385833966776))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322302303",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.90172088282524)",
+      "predictions": {
+        "ml_prediction": 39096.21589061347,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.89958342598271, -77.135009765625 38.90385833966776, -77.1405029296875 38.90385833966776, -77.1405029296875 38.89958342598271, -77.135009765625 38.89958342598271))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322302321",
+      "centroid": "SRID=4326;POINT (-77.13775634765626 38.89744584045145)",
+      "predictions": {
+        "ml_prediction": 42154.233048577174,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.89530825492017, -77.135009765625 38.89958342598271, -77.1405029296875 38.89958342598271, -77.1405029296875 38.89530825492017, -77.135009765625 38.89530825492017))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322302323",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.89317054070432)",
+      "predictions": {
+        "ml_prediction": 36579.55188438126,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.89103282648846, -77.135009765625 38.89530825492017, -77.1405029296875 38.89530825492017, -77.1405029296875 38.89103282648846, -77.135009765625 38.89103282648846))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322320101",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.88889498359218)",
+      "predictions": {
+        "ml_prediction": 30273.775628350544,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.8867571406959, -77.135009765625 38.89103282648846, -77.1405029296875 38.89103282648846, -77.1405029296875 38.8867571406959, -77.135009765625 38.8867571406959))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322320103",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.88461916912335)",
+      "predictions": {
+        "ml_prediction": 40148.354863255256,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.8824811975508, -77.135009765625 38.8867571406959, -77.1405029296875 38.8867571406959, -77.1405029296875 38.8824811975508, -77.135009765625 38.8824811975508))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322320121",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.88034309730615)",
+      "predictions": {
+        "ml_prediction": 15525.638126029982,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.87820499706149, -77.135009765625 38.8824811975508, -77.1405029296875 38.8824811975508, -77.1405029296875 38.87820499706149, -77.135009765625 38.87820499706149))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322320123",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.87606676814889)",
+      "predictions": {
+        "ml_prediction": 27316.535904002743,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.87392853923629, -77.135009765625 38.87820499706149, -77.1405029296875 38.87820499706149, -77.1405029296875 38.87392853923629, -77.135009765625 38.87392853923629))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322320301",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.87179018165993)",
+      "predictions": {
+        "ml_prediction": 33832.863009077104,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.86965182408356, -77.135009765625 38.87392853923629, -77.1405029296875 38.87392853923629, -77.1405029296875 38.86965182408356, -77.135009765625 38.86965182408356))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322320303",
+      "centroid": "SRID=4326;POINT (-77.13775634765626 38.8675133378476)",
+      "predictions": {
+        "ml_prediction": 40694.14122096636,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.86537485161164, -77.135009765625 38.86965182408356, -77.1405029296875 38.86965182408356, -77.1405029296875 38.86537485161164, -77.135009765625 38.86537485161164))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322320321",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.86323623672025)",
+      "predictions": {
+        "ml_prediction": 30575.114880023688,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.86109762182887, -77.135009765625 38.86537485161164, -77.1405029296875 38.86537485161164, -77.1405029296875 38.86109762182887, -77.135009765625 38.86109762182887))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322320323",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.85895887828624)",
+      "predictions": {
+        "ml_prediction": 24905.070550441742,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.85682013474362, -77.135009765625 38.86109762182887, -77.1405029296875 38.86109762182887, -77.1405029296875 38.85682013474362, -77.135009765625 38.85682013474362))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322322101",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.85468126255394)",
+      "predictions": {
+        "ml_prediction": 43084.90120683009,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.85254239036425, -77.135009765625 38.85682013474362, -77.1405029296875 38.85682013474362, -77.1405029296875 38.85254239036425, -77.135009765625 38.85254239036425))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322322103",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.85040338953169)",
+      "predictions": {
+        "ml_prediction": 28721.10179443585,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.84826438869912, -77.135009765625 38.85254239036425, -77.1405029296875 38.85254239036425, -77.1405029296875 38.84826438869912, -77.135009765625 38.84826438869912))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322322121",
+      "centroid": "SRID=4326;POINT (-77.13775634765626 38.84612525922787)",
+      "predictions": {
+        "ml_prediction": 36697.151535123805,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.84398612975662, -77.135009765625 38.84826438869912, -77.1405029296875 38.84826438869912, -77.1405029296875 38.84398612975662, -77.135009765625 38.84398612975662))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322322123",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.84184687165087)",
+      "predictions": {
+        "ml_prediction": 25457.57148123241,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.83970761354513, -77.135009765625 38.84398612975662, -77.1405029296875 38.84398612975662, -77.1405029296875 38.83970761354513, -77.135009765625 38.83970761354513))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322322301",
+      "centroid": "SRID=4326;POINT (-77.13775634765624 38.83756822680908)",
+      "predictions": {
+        "ml_prediction": 22499.42162341484,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.83542884007304, -77.135009765625 38.83970761354513, -77.1405029296875 38.83970761354513, -77.1405029296875 38.83542884007304, -77.135009765625 38.83542884007304))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322322303",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.83328932471088)",
+      "predictions": {
+        "ml_prediction": 19042.518255606472,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.83114980934873, -77.135009765625 38.83542884007304, -77.1405029296875 38.83542884007304, -77.1405029296875 38.83114980934873, -77.135009765625 38.83114980934873))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322322321",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.82901016536467)",
+      "predictions": {
+        "ml_prediction": 22522.017627982663,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.82687052138063, -77.135009765625 38.83114980934873, -77.1405029296875 38.83114980934873, -77.1405029296875 38.82687052138063, -77.135009765625 38.82687052138063))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322322323",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.82473074877886)",
+      "predictions": {
+        "ml_prediction": 27011.653024734063,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.8225909761771, -77.135009765625 38.82687052138063, -77.1405029296875 38.82687052138063, -77.1405029296875 38.8225909761771, -77.135009765625 38.8225909761771))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320102100100101",
+      "centroid": "SRID=4326;POINT (-77.13775634765625 38.82045107496186)",
+      "predictions": {
+        "ml_prediction": 60765.42827167248,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.135009765625 38.81831117374661, -77.135009765625 38.8225909761771, -77.1405029296875 38.8225909761771, -77.1405029296875 38.81831117374661, -77.135009765625 38.81831117374661))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322300130",
+      "centroid": "SRID=4326;POINT (-77.13226318359375 38.94872935992687)",
+      "predictions": {
+        "ml_prediction": 1503.6413141410067,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.1295166015625 38.94659331893374, -77.1295166015625 38.95086540091999, -77.135009765625 38.95086540091999, -77.135009765625 38.94659331893374, -77.1295166015625 38.94659331893374))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322300132",
+      "centroid": "SRID=4326;POINT (-77.13226318359376 38.94445714920638)",
+      "predictions": {
+        "ml_prediction": 7095.633365316331,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.1295166015625 38.94232097947902, -77.1295166015625 38.94659331893374, -77.135009765625 38.94659331893374, -77.135009765625 38.94232097947902, -77.1295166015625 38.94232097947902))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322300310",
+      "centroid": "SRID=4326;POINT (-77.13226318359375 38.94018468102156)",
+      "predictions": {
+        "ml_prediction": 7122.50110456581,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.1295166015625 38.9380483825641, -77.1295166015625 38.94232097947902, -77.135009765625 38.94232097947902, -77.135009765625 38.9380483825641, -77.1295166015625 38.9380483825641))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322300312",
+      "centroid": "SRID=4326;POINT (-77.13226318359375 38.93591195538066)",
+      "predictions": {
+        "ml_prediction": 13552.905083075411,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.1295166015625 38.93377552819721, -77.1295166015625 38.9380483825641, -77.135009765625 38.9380483825641, -77.135009765625 38.93377552819721, -77.1295166015625 38.93377552819721))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322300330",
+      "centroid": "SRID=4326;POINT (-77.13226318359375 38.93163897229191)",
+      "predictions": {
+        "ml_prediction": 24387.900641408683,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.1295166015625 38.9295024163866, -77.1295166015625 38.93377552819721, -77.135009765625 38.93377552819721, -77.135009765625 38.9295024163866, -77.1295166015625 38.9295024163866))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322300332",
+      "centroid": "SRID=4326;POINT (-77.13226318359374 38.92736573176356)",
+      "predictions": {
+        "ml_prediction": 27681.62393371084,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.1295166015625 38.92522904714053, -77.1295166015625 38.9295024163866, -77.135009765625 38.9295024163866, -77.135009765625 38.92522904714053, -77.1295166015625 38.92522904714053))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "0320100322302110",
+      "centroid": "SRID=4326;POINT (-77.13226318359375 38.9230922338039)",
+      "predictions": {
+        "ml_prediction": 31679.170205278075,
+        "url": "http://buildingfootprintsapi.azurewebsites.net/api/BuildingFootprints?searchAreaWkt=POLYGON ((-77.1295166015625 38.92095542046727, -77.1295166015625 38.92522904714053, -77.135009765625 38.92522904714053, -77.135009765625 38.92095542046727, -77.1295166015625 38.92095542046727))&outputFormat=geojson",
+        "osm_building_area": 293094.63606218447
+      }
+    }
+  ]
+}

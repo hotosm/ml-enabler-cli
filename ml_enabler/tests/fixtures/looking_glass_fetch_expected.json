@@ -1,0 +1,108 @@
+{
+  "metadata": {
+    "model_name": "looking_glass",
+    "version": "1",
+    "bbox": "15.098834,47.379869,15.105771,47.383678",
+    "zoom": 18
+  },
+  "predictions": [
+    {
+      "quadkey": "120230123031130010",
+      "centroid": "SRID=4326;POINT (15.09864807128906 47.38300894839056)",
+      "predictions": {
+        "ml_prediction": 10715.625196639276
+      }
+    },
+    {
+      "quadkey": "120230123031130012",
+      "centroid": "SRID=4326;POINT (15.09864807128906 47.38207909276822)",
+      "predictions": {
+        "ml_prediction": 10715.625196639276
+      }
+    },
+    {
+      "quadkey": "120230123031130032",
+      "centroid": "SRID=4326;POINT (15.09864807128906 47.38021933232057)",
+      "predictions": {
+        "ml_prediction": 10715.625196639276
+      }
+    },
+    {
+      "quadkey": "120230123031112233",
+      "centroid": "SRID=4326;POINT (15.10002136230469 47.38393878761198)",
+      "predictions": {
+        "ml_prediction": 10715.625196639276
+      }
+    },
+    {
+      "quadkey": "120230123031112322",
+      "centroid": "SRID=4326;POINT (15.10139465332031 47.38393878761198)",
+      "predictions": {
+        "ml_prediction": 10715.625196639276
+      }
+    },
+    {
+      "quadkey": "120230123031130120",
+      "centroid": "SRID=4326;POINT (15.10139465332031 47.38114922074489)",
+      "predictions": {
+        "ml_prediction": 10715.625196639276
+      }
+    },
+    {
+      "quadkey": "120230123031130103",
+      "centroid": "SRID=4326;POINT (15.10276794433594 47.38207909276822)",
+      "predictions": {
+        "ml_prediction": 10715.625196639276
+      }
+    },
+    {
+      "quadkey": "120230123031130121",
+      "centroid": "SRID=4326;POINT (15.10276794433594 47.38114922074489)",
+      "predictions": {
+        "ml_prediction": 10715.625196639276
+      }
+    },
+    {
+      "quadkey": "120230123031130123",
+      "centroid": "SRID=4326;POINT (15.10276794433594 47.38021933232057)",
+      "predictions": {
+        "ml_prediction": 10715.625196639276
+      }
+    },
+    {
+      "quadkey": "120230123031130110",
+      "centroid": "SRID=4326;POINT (15.10414123535156 47.38300894839056)",
+      "predictions": {
+        "ml_prediction": 10715.625196639276
+      }
+    },
+    {
+      "quadkey": "120230123031130112",
+      "centroid": "SRID=4326;POINT (15.10414123535156 47.38207909276822)",
+      "predictions": {
+        "ml_prediction": 10715.625196639276
+      }
+    },
+    {
+      "quadkey": "120230123031130111",
+      "centroid": "SRID=4326;POINT (15.10551452636719 47.38300894839056)",
+      "predictions": {
+        "ml_prediction": 10715.625196639276
+      }
+    },
+    {
+      "quadkey": "120230123031130113",
+      "centroid": "SRID=4326;POINT (15.10551452636719 47.38207909276822)",
+      "predictions": {
+        "ml_prediction": 10715.625196639276
+      }
+    },
+    {
+      "quadkey": "120230123031130133",
+      "centroid": "SRID=4326;POINT (15.10551452636719 47.38021933232057)",
+      "predictions": {
+        "ml_prediction": 10715.625196639276
+      }
+    }
+  ]
+}

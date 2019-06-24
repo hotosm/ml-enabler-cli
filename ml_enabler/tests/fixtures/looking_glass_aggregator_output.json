@@ -1,20 +1,38 @@
 {
   "metadata": {
     "model_name": "looking_glass",
-    "version": "1"
+    "version": "1",
+    "bbox": "15.098834,47.379869,15.105771,47.383678",
+    "zoom": 14
   },
   "predictions": [
     {
-      "quadkey": "12020131203223",
-      "centroid": "SRID=4326;POINT (10.04150390625, 53.54030739150021)",
+      "quadkey": "12020131202333",
+      "centroid": "SRID=4326;POINT (10.008544921875 53.54683508851414)",
       "predictions": {
-        "ml_prediction": 149421,
-        "osm_building_area": 403668.58780452923
+        "ml_prediction": 148953,
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "12020131220111",
+      "centroid": "SRID=4326;POINT (10.008544921875 53.53377768080133)",
+      "predictions": {
+        "ml_prediction": 1086694,
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "12020131221001",
+      "centroid": "SRID=4326;POINT (10.052490234375 53.53377768080133)",
+      "predictions": {
+        "ml_prediction": 1165976,
+        "osm_building_area": 293094.63606218447
       }
     },
     {
       "quadkey": "12020131221002",
-      "centroid": "SRID=4326;POINT (10.01953125, 53.51418452077112)",
+      "centroid": "SRID=4326;POINT (10.030517578125 53.52071624543679)",
       "predictions": {
         "ml_prediction": 1188314,
         "osm_building_area": 293094.63606218447
@@ -22,58 +40,42 @@
     },
     {
       "quadkey": "12020131221000",
-      "centroid": "SRID=4326;POINT (10.01953125, 53.52724797010246)",
+      "centroid": "SRID=4326;POINT (10.030517578125 53.53377768080133)",
       "predictions": {
         "ml_prediction": 2910913,
-        "osm_building_area": 204167.46135126174
-      }
-    },
-    {
-      "quadkey": "12020131220111",
-      "centroid": "SRID=4326;POINT (9.99755859375, 53.52724797010246)",
-      "predictions": {
-        "ml_prediction": 1086694,
-        "osm_building_area": 335713.85715288226
-      }
-    },
-    {
-      "quadkey": "12020131220113",
-      "centroid": "SRID=4326;POINT (9.99755859375, 53.51418452077112)",
-      "predictions": {
-        "ml_prediction": 400747,
-        "osm_building_area": 263216.82223677234
-      }
-    },
-    {
-      "quadkey": "12020131202333",
-      "centroid": "SRID=4326;POINT (9.99755859375, 53.54030739150021)",
-      "predictions": {
-        "ml_prediction": 148953,
-        "osm_building_area": 601678.0536296234
+        "osm_building_area": 293094.63606218447
       }
     },
     {
       "quadkey": "12020131203222",
-      "centroid": "SRID=4326;POINT (10.01953125, 53.54030739150021)",
+      "centroid": "SRID=4326;POINT (10.030517578125 53.54683508851414)",
       "predictions": {
         "ml_prediction": 398398,
-        "osm_building_area": 549426.2091081082
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "12020131220113",
+      "centroid": "SRID=4326;POINT (10.008544921875 53.52071624543679)",
+      "predictions": {
+        "ml_prediction": 400747,
+        "osm_building_area": 293094.63606218447
+      }
+    },
+    {
+      "quadkey": "12020131203223",
+      "centroid": "SRID=4326;POINT (10.052490234375 53.54683508851414)",
+      "predictions": {
+        "ml_prediction": 149421,
+        "osm_building_area": 293094.63606218447
       }
     },
     {
       "quadkey": "12020131221003",
-      "centroid": "SRID=4326;POINT (10.04150390625, 53.51418452077112)",
+      "centroid": "SRID=4326;POINT (10.052490234375 53.52071624543679)",
       "predictions": {
         "ml_prediction": 374743,
-        "osm_building_area": 197342.69533323683
-      }
-    },
-    {
-      "quadkey": "12020131221001",
-      "centroid": "SRID=4326;POINT (10.04150390625, 53.52724797010246)",
-      "predictions": {
-        "ml_prediction": 1165976,
-        "osm_building_area": 364239.1353261742
+        "osm_building_area": 293094.63606218447
       }
     }
   ]
