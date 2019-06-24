@@ -22,7 +22,6 @@ def test_upload():
               json.dumps(data),
               mimetype='application/json'
         )
-        res.headers['Content-Length'] = len(res.get_data())
         return res
 
     def add_prediction_response():
@@ -31,7 +30,6 @@ def test_upload():
             json.dumps(data),
             mimetype='application/json'
         )
-        res.headers['Content-Length'] = len(res.get_data())
         return res
 
     def post_prediction_response():
@@ -45,13 +43,6 @@ def test_upload():
     server.add_callback_response('/v1/model/prediction/1/tiles', post_prediction_response)
 
     infile = 'ml_enabler/tests/fixtures/looking_glass_aggregator_output.json'
-
-    # payload = {
-    #     "modelId": 1,
-    #     "version": "2.0.0",
-    #     "bbox": [10.013795, 53.5225, 10.048885, 53.540843],
-    #     "tileZoom": 18
-    # }
 
     runner = CliRunner()
     result = runner.invoke(main_group,
