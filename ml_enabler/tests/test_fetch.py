@@ -35,7 +35,7 @@ def test_looking_glass_fetch():
                            [
                                'fetch_predictions',
                                '--name',
-                               'looking_glass', 
+                               'looking_glass',
                                '--zoom',
                                18,
                                '--concurrency',
@@ -77,7 +77,7 @@ def test_building_api_fetch():
                            [
                                'fetch_predictions',
                                '--name',
-                               'building_api', 
+                               'building_api',
                                '--zoom',
                                16,
                                '--concurrency',

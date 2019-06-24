@@ -21,7 +21,8 @@ def test_looking_glass_aggregator():
 
     runner = CliRunner()
     result = runner.invoke(main_group,
-                           ['aggregate_predictions', '--name', 'looking_glass',  '--zoom', 14, '--infile', infile, '--outfile', outfile, '--errfile', errfile, '--overpass-url', 'http://localhost:1234/api/interpreter'])
+                           ['aggregate_predictions', '--name', 'looking_glass',  '--zoom', 14, '--infile', infile, '--outfile', outfile, '--errfile', errfile,
+                            '--overpass-url', 'http://localhost:1234/api/interpreter'])
     current_results = json.load(open(outfile))
     expected_results['predictions'] = sorted(expected_results['predictions'], key=lambda p: p['quadkey'])
     current_results['predictions'] = sorted(current_results['predictions'], key=lambda p: p['quadkey'])
@@ -47,7 +48,8 @@ def test_building_aggregator():
 
     runner = CliRunner()
     result = runner.invoke(main_group,
-                           ['aggregate_predictions', '--name', 'building_api',  '--zoom', 14, '--infile', infile, '--outfile', outfile, '--errfile', errfile, '--overpass-url', 'http://localhost:1234/api/interpreter'])
+                           ['aggregate_predictions', '--name', 'building_api',  '--zoom', 14, '--infile', infile, '--outfile', outfile, '--errfile', errfile,
+                            '--overpass-url', 'http://localhost:1234/api/interpreter'])
     current_results = json.load(open(outfile))
     expected_results['predictions'] = sorted(expected_results['predictions'], key=lambda p: p['quadkey'])
     current_results['predictions'] = sorted(current_results['predictions'], key=lambda p: p['quadkey'])
@@ -55,4 +57,3 @@ def test_building_aggregator():
     assert(result.exit_code) == 0
     assert(expected_results == current_results)
     os.remove('/tmp/aggregator.json')
-    
