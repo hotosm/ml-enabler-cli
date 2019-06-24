@@ -25,11 +25,10 @@ def test_looking_glass_aggregator():
     current_results = json.load(open(outfile))
     expected_results['predictions'] = sorted(expected_results['predictions'], key=lambda p: p['quadkey'])
     current_results['predictions'] = sorted(current_results['predictions'], key=lambda p: p['quadkey'])
+    server.shutdown_server()
     assert(result.exit_code) == 0
     assert(expected_results == current_results)
-    server.shutdown_server()
     os.remove('/tmp/aggregator.json')
-
 
 
 def test_building_aggregator():
