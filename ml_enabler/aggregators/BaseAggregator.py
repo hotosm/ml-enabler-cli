@@ -9,7 +9,6 @@ class BaseAggregator:
         self.source_data = data['predictions']
         self.source_metadata = data['metadata']
         self.outfile = outfile
-        self.errfile = errfile
 
     async def aggregate(self):
         '''

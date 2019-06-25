@@ -47,7 +47,6 @@ async def url_image_to_b64_string(session, url):
     """
     # GET data from url
     response = await session.get(url)
-    print('fetching image', url)
     if not response.status == 200:
         raise ImageFetchError()
 
@@ -81,7 +80,6 @@ def clip_polygon(tile, polygon):
     tilePolygon = shape(mercantile.feature(tile)['geometry'])
     polygonShape = shape(polygon)
     if (polygonShape.crosses(tilePolygon)):
-        print('clipping')
         intersection = tilePolygon.intersection(polygonShape)
         return json.loads(json.dumps(mapping(intersection)))
     else:

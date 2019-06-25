@@ -3,6 +3,7 @@ import click
 from ml_enabler.aggregators import aggregators
 import logging
 # from ml_enabler.aggregators.LookingGlassAggregator import LookingGlassAggregator
+import sys
 
 
 @click.command('aggregate_predictions', short_help='Aggregate predictions to lower zoom levels and add ancillary data')
@@ -14,11 +15,13 @@ import logging
               )
 @click.option('--infile', help='Filename to read predictions JSON from', type=click.File('r'))
 @click.option('--outfile', help='Filename to write results to', type=click.File('w'))
-@click.option('--errfile', help='Filename to write errors to', type=click.File('w'))
 @click.pass_context
-def aggregate(ctx, name, zoom, overpass_url, infile, outfile, errfile):
+def aggregate(ctx, name, zoom, overpass_url, infile, outfile):
+    if not outfile:
+        logging.error('You must provide an outfile to write results to')
+        sys.exit(1)
     aggregator_class = aggregators[name]
-    aggregator = aggregator_class(zoom, overpass_url, infile, outfile, errfile)
+    aggregator = aggregator_class(zoom, overpass_url, infile, outfile)
     loop = asyncio.get_event_loop()
     loop.run_until_complete(aggregator.aggregate())
     logging.info('Done aggregating')

@@ -2,6 +2,8 @@ import asyncio
 import click
 from ml_enabler.predictors import predictors
 import logging
+import sys
+
 
 @click.command('fetch_predictions', short_help='Fetch model predictions for a bbox')
 @click.option('--name', help='Name of the predictor')
@@ -23,6 +25,12 @@ def fetch(ctx, name, endpoint, bbox, tile_url, zoom, token, lg_weight, concurren
     model_opts = {
         'weight': lg_weight
     }
+    if not outfile:
+        logging.error('You must provide an outfile to write results to')
+        sys.exit(1)
+    if not bbox:
+        logging.error('You must provide a bbox to fetch predictions for')
+        sys.exit(1)
     predictor_class = predictors[name]
     predictor = predictor_class(endpoint, tile_url, token, zoom, model_opts)
     loop = asyncio.get_event_loop()

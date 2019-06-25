@@ -1,6 +1,10 @@
 import click
 from ml_enabler.commands import fetch_predictions, aggregate_predictions, upload_predictions
 from ml_enabler import __version__
+import logging
+
+# set global log level to INFO
+logging.getLogger().setLevel(logging.INFO)
 
 
 @click.group()
