@@ -4,6 +4,7 @@ from ml_enabler.utils.postproc import get_thresh_weighted_sum, get_pixel_area
 from ml_enabler.exceptions import InvalidData
 import aiohttp
 import asyncio
+import logging
 import json
 import numpy as np
 from .BasePredictor import BasePredictor
@@ -22,7 +23,7 @@ class LookingGlassPredictor(BasePredictor):
             Return predictions for given bbox
         '''
         tiles = list(bbox_to_tiles(bbox, self.zoom))
-        print(f'Processing {len(tiles)} tiles')
+        logging.info(f'Processing {len(tiles)} tiles')
         weight = self.get_weight(bbox, self.zoom)
         conn = aiohttp.TCPConnector(limit=concurrency)
         timeout = aiohttp.ClientTimeout(total=None, connect=None, sock_connect=None, sock_read=None)
@@ -55,6 +56,7 @@ class LookingGlassPredictor(BasePredictor):
         try:
             payload = await self.get_payload(session, image_url)
         except Exception as e:
+            logging.warning(f'Error while fetching image for quadkey {quadkey}')
             return {
                 'quadkey': quadkey,
                 'error': str(e),
@@ -64,6 +66,7 @@ class LookingGlassPredictor(BasePredictor):
             raw_prediction = await get_raw_prediction(session, prediction_endpoint, payload)
             data = self.get_data_from_prediction(raw_prediction, weight)
         except Exception as e:
+            logging.warning(f'Error while fetching prediction for quadkey {quadkey}')
             return {
                 'quadkey': quadkey,
                 'error': str(e),
@@ -93,12 +96,14 @@ class LookingGlassPredictor(BasePredictor):
         version_url = f'{self.endpoint}models/{self.name}'
         res = await session.get(version_url)
         if res.status != 200:
+            logging.error('Failed to fetch version information from prediction endpoint')
             raise Exception(f'Unable to fetch version information from {version_url}')
         data = await res.json()
         return data['model_version_status'][0]['version']
 
     def get_data_from_prediction(self, raw_prediction, weight):
         if not raw_prediction or 'predictions' not in raw_prediction:
+            logging.error('Malformed data returned from prediction endpoint')
             raise InvalidData('Improper predictions format from model')
         predictions = raw_prediction['predictions']
         np_arr = np.array(predictions)

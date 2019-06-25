@@ -1,6 +1,7 @@
 import mercantile
 import aiohttp
 import asyncio
+import logging
 import json
 from .BasePredictor import BasePredictor
 from ml_enabler.utils import bbox_to_polygon_wkt, get_tile_quadkey, bbox_to_tiles, get_tile_center, clip_polygon
@@ -17,6 +18,7 @@ class BuildingPredictor(BasePredictor):
         """
 
         tiles = list(bbox_to_tiles(bbox, self.zoom))
+        logging.info(f'Processing {len(tiles)} tiles')
         metadata = {
             'model_name': self.name,
             'version': '1.0.0',
@@ -40,11 +42,11 @@ class BuildingPredictor(BasePredictor):
         bounds = list(mercantile.bounds(tile))
         polygon_wkt = bbox_to_polygon_wkt(bounds)
         tile_url = f'{self.endpoint}?searchAreaWkt={polygon_wkt}&outputFormat=geojson'
-        print(f'Fetching {tile_url}...')
 
         try:
             res = await session.get(tile_url)
             if res.status != 200:
+                logging.warn(f'Unable to fetch tile {tile_url}')
                 raise Exception(f'Unable to fetch tile {tile_url}')
 
             data = await res.json()
@@ -63,4 +65,4 @@ class BuildingPredictor(BasePredictor):
                 }
             }
         except Exception as e:
-            print(str(e))
+            logging.error(str(e))

@@ -1,7 +1,7 @@
 import asyncio
 import click
 from ml_enabler.predictors import predictors
-
+import logging
 
 @click.command('fetch_predictions', short_help='Fetch model predictions for a bbox')
 @click.option('--name', help='Name of the predictor')
@@ -27,4 +27,4 @@ def fetch(ctx, name, endpoint, bbox, tile_url, zoom, token, lg_weight, concurren
     predictor = predictor_class(endpoint, tile_url, token, zoom, model_opts)
     loop = asyncio.get_event_loop()
     loop.run_until_complete(predictor.predict(bbox, concurrency, outfile, errfile))
-    print('done processing tiles')
+    logging.info('done processing tiles')
