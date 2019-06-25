@@ -21,6 +21,7 @@ Aggregators take predictions from a model and then aggregate data at desired zoo
 * `cd ml-enabler-cli`
 * Create a virtualenv (recommended) `python3 -m venv env`
 * `pip install -e .`
+* Install osmtogeojson (this is used for matching with OSM data in the aggregator) `npm install -g osmtogeojson`
 * `ml-enabler-cli --version` to check if the installation was successful
 * `ml-enabler-cli --help` to see commands and options
 
