@@ -46,7 +46,7 @@ class BuildingPredictor(BasePredictor):
         try:
             res = await session.get(tile_url)
             if res.status != 200:
-                logging.warn(f'Unable to fetch tile {tile_url}')
+                logging.warning(f'Unable to fetch tile {tile_url}')
                 raise Exception(f'Unable to fetch tile {tile_url}')
 
             data = await res.json()

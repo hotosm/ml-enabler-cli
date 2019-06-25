@@ -43,8 +43,12 @@ class LookingGlassPredictor(BasePredictor):
                 'metadata': metadata,
                 'predictions': successes
             }
-            errfile.write(json.dumps(errors, indent=2))
-            errfile.close()
+            if errfile:
+                errfile.write(json.dumps(errors, indent=2))
+                errfile.close()
+            else:
+                if len(errors) > 0:
+                    logging.warn('No errfile provided, but errors were present.')
             outfile.write(json.dumps(out_data, indent=2))
             outfile.close()
 
