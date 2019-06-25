@@ -98,5 +98,6 @@ def test_building_api_fetch():
     expected_results['predictions'] = sorted(expected_results['predictions'], key=lambda p: p['quadkey'])
     current_results['predictions'] = sorted(current_results['predictions'], key=lambda p: p['quadkey'])
     server.shutdown_server()
+    os.remove(outfile)
     assert(result.exit_code == 0)
     assert(current_results == expected_results)
