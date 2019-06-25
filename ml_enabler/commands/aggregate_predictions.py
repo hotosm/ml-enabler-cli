@@ -1,6 +1,7 @@
 import asyncio
 import click
 from ml_enabler.aggregators import aggregators
+import logging
 # from ml_enabler.aggregators.LookingGlassAggregator import LookingGlassAggregator
 
 
@@ -20,4 +21,4 @@ def aggregate(ctx, name, zoom, overpass_url, infile, outfile, errfile):
     aggregator = aggregator_class(zoom, overpass_url, infile, outfile, errfile)
     loop = asyncio.get_event_loop()
     loop.run_until_complete(aggregator.aggregate())
-    print('done aggregating')
+    logging.info('Done aggregating')

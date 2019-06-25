@@ -1,4 +1,5 @@
 import click
+import logging
 import json
 from ml_enabler.utils.api import get_model_id, post_prediction, post_prediction_tiles
 
@@ -20,4 +21,4 @@ def upload(ctx, infile, api_url):
     for p in predictions:
         p['prediction_id'] = prediction_id
     post_prediction_tiles(api_url, prediction_id, predictions)
-    print(f'uploaded predictions to model_id={model_id}, prediction_id={prediction_id}')
+    logging.info(f'uploaded predictions to model_id={model_id}, prediction_id={prediction_id}')
