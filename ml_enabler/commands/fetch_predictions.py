@@ -31,6 +31,9 @@ def fetch(ctx, name, endpoint, bbox, tile_url, zoom, token, lg_weight, concurren
     if not bbox:
         logging.error('You must provide a bbox to fetch predictions for')
         sys.exit(1)
+    if not name:
+        logging.error('You must provide the name of the predictor to use')
+        sys.exit(1)
     predictor_class = predictors[name]
     predictor = predictor_class(endpoint, tile_url, token, zoom, model_opts)
     loop = asyncio.get_event_loop()

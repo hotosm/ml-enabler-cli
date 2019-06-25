@@ -20,6 +20,9 @@ def aggregate(ctx, name, zoom, overpass_url, infile, outfile):
     if not outfile:
         logging.error('You must provide an outfile to write results to')
         sys.exit(1)
+    if not name:
+        logging.error('You must provide the name of the aggregator to use')
+        sys.exit(1)
     aggregator_class = aggregators[name]
     aggregator = aggregator_class(zoom, overpass_url, infile, outfile)
     loop = asyncio.get_event_loop()
