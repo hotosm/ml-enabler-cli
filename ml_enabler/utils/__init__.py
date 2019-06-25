@@ -83,6 +83,6 @@ def clip_polygon(tile, polygon):
     if (polygonShape.crosses(tilePolygon)):
         print('clipping')
         intersection = tilePolygon.intersection(polygonShape)
-        return json.dumps(mapping(intersection))
+        return json.loads(json.dumps(mapping(intersection)))
     else:
-        return json.dumps(polygon)
+        return json.loads(json.dumps(polygon))

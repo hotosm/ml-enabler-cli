@@ -1,5 +1,6 @@
 from ml_enabler.utils import bbox_str_to_list, get_tile_center, bbox_to_polygon_wkt, clip_polygon
 import mercantile
+import json
 
 
 def test_bbox_str_to_list():
@@ -77,7 +78,7 @@ def test_clip_polygon():
       }
 
     result = clip_polygon(tile, polygon)
-    assert result == {"type": "Polygon", "coordinates": [[[-67.5, -22.61908160971607], [-67.5, -23.79539759797873], [-68.5711669921875, -23.79539759797873], [-68.5711669921875, -22.61908160971607], [-67.5, -22.61908160971607]]]} # noqa
+    assert result == {"type": "Polygon", "coordinates": [[[-68.5711669921875, -23.79539759797873], [-66.7254638671875, -23.79539759797873], [-66.7254638671875, -22.61908160971607], [-68.5711669921875, -22.61908160971607], [-68.5711669921875, -23.79539759797873]]]} # noqa
 
     outside_result = clip_polygon(tile, polygon_outside)
     assert outside_result == polygon_outside
