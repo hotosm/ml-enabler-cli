@@ -24,7 +24,11 @@ def aggregate(ctx, name, zoom, overpass_url, infile, outfile):
         logging.error('You must provide the name of the aggregator to use')
         sys.exit(1)
     aggregator_class = aggregators[name]
-    aggregator = aggregator_class(zoom, overpass_url, infile, outfile)
+    try:
+        aggregator = aggregator_class(zoom, overpass_url, infile, outfile)
+    except ValueError as e:
+        logging.error(str(e))
+        sys.exit(1)
     loop = asyncio.get_event_loop()
     loop.run_until_complete(aggregator.aggregate())
     logging.info('Done aggregating')
