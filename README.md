@@ -32,7 +32,14 @@ To use looking-glass, first ensure looking-glass is hosted either on your comput
 
 To fetch predictions for a bbox, use:
 ```
-ml-enabler fetch_predictions --name looking_glass --bbox "-77.14, 38.82, -76.92, 38.95" --endpoint http://looking-glass.com --tile-url https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.jpg?access_token={token}' --token abcd --zoom 16 --outfile /tmp/looking_glass_output.json --errfile /tmp/looking_glass_errors.json
+ml-enabler fetch_predictions --name looking_glass \ 
+ --bbox "-77.14, 38.82, -76.92, 38.95" \
+ --endpoint http://looking-glass.com \
+ --tile-url https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.jpg?access_token={token}' \
+ --token abcd \
+ --zoom 16 \
+ --outfile /tmp/looking_glass_output.json \
+ --errfile /tmp/looking_glass_errors.json
 ```
 
 The predictor options are:
@@ -51,7 +58,10 @@ The predictor options are:
 To aggregate predictions, use:
 
 ```
-ml-enabler aggregate_predictions --name looking_glass --zoom 16 --infile /tmp/looking_glass_output.json --outfile /tmp/looking_glass_aggregated.json --errfile /tmp/looking_glass_aggregator_errors.json
+ml-enabler aggregate_predictions --name looking_glass \
+ --zoom 16 \
+ --infile /tmp/looking_glass_output.json \
+ --outfile /tmp/looking_glass_aggregated.json
 ```
 
 The aggregator options are:
@@ -71,7 +81,9 @@ To upload predictions, the model should be registered first. To register the mod
 The `model_name` is available in the `metadata` object of the prediction generated from the `fetch_predictions` command. ml-enabler-cli can upload predictions, using:
 
 ```
-ml-enabler upload_predictions --infile /tmp/looking_glass_aggregated.json --api-url https://ml-enabler.hotosm.org/v1
+ml-enabler upload_predictions \
+ --infile /tmp/looking_glass_aggregated.json \
+ --api-url https://ml-enabler.hotosm.org/v1
 ```
 
 ### Adding a new model
