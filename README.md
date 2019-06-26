@@ -37,7 +37,7 @@ ml-enabler fetch_predictions --name looking_glass \
  --endpoint http://looking-glass.com \
  --tile-url https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}.jpg?access_token={token}' \
  --token abcd \
- --zoom 16 \
+ --zoom 18 \
  --outfile /tmp/looking_glass_output.json \
  --errfile /tmp/looking_glass_errors.json
 ```
