@@ -69,7 +69,6 @@ The aggregator options are:
 * overpass-url - optional overpass url. default is `https://lz4.overpass-api.de/api/interpreter`
 * infile - input file with predictions. This is the output of `fetch_predictions` command
 * outfile - file to store aggregated predictions
-* errfile - file to store any errors generated while aggregating
 
 ### Working with the API
 
