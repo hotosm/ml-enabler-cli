@@ -7,6 +7,7 @@ setup(
     install_requires=[
         'Click',
         'numpy',
+        'geopy',
         'requests==2.22.0',
         'mercantile==1.0.4',
         'aiohttp==3.5.4',

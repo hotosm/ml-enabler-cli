@@ -1,4 +1,5 @@
 from area import area
+from geopy.distance import great_circle
 import json
 import numpy as np
 import os
@@ -67,7 +68,24 @@ class OSMData(object):
         geojson = await self.fetch(session)
         total = 0
         for f in geojson['features']:
-            total += area(f['geometry'])
+            if 'building' in f['properties']:
+                total += area(f['geometry'])
+        return total
+
+    async def road_length_km(self, session):
+        geojson = await self.fetch(session)
+        total = 0
+        for f in geojson['features']:
+            if 'highway' not in f['properties']:
+                continue
+            len = 0
+            last_coord = None
+            for c in f['geometry']['coordinates']:
+                if last_coord is None:
+                    last_coord = c
+                    continue
+                len += great_circle((last_coord[1], last_coord[0]), (c[1], c[0])).km
+            total += len
         return total
 
     async def fetch(self, session):
@@ -93,7 +111,7 @@ class OSMData(object):
             geoq = 'poly:"%s"' % ' '.join(_coords)
 
         # types = ('node["building"="yes"]', 'way["building"="yes"]', 'relation["building"="yes"]')
-        types = ('way["building"]',)
+        types = ('way["building"]','way["highway"]')
         # types = ('way["building"="yes"]')
         q = '[out:%s];(%s);out geom;' % (format, ''.join(['%s(%s);' % (t, geoq) for t in types]))
         # q = '[out:xml];way["building"="yes"](%s);out geom;' % geoq

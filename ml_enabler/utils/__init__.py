@@ -23,6 +23,11 @@ async def get_building_area(session, tile, overpass_url):
     return await OSMData(geojson, overpass_url).building_area(session)
 
 
+async def get_road_len_km(session, tile, overpass_url):
+    geojson = mercantile.feature(tile)
+    return await OSMData(geojson, overpass_url).road_length_km(session)
+
+
 def tile_to_geojson(tile):
     return mercantile.feature(tile)
 
