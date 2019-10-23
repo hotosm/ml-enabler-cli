@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "model_name": "mapwithai_road_stats",
+    "version": "1.0.0",
+    "bbox": "7.5613403, 12.910875, 7.566833, 12.916229",
+    "zoom": 15
+  },
+  "predictions": [
+    {
+      "quadkey": "122203212132220",
+      "centroid": "SRID=4326;POINT (7.564086914062501 12.91355234124947)",
+      "predictions": {
+        "ml_prediction": 3.87095691700752,
+        "osm_road_len_km": 28.485968068985457
+      }
+    }
+  ]
+}

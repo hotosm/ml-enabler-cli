@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "model_name": "mapwithai_road_stats",
+    "version": "1.0.0",
+    "bbox": "7.5613403, 12.910875, 7.566833, 12.916229",
+    "zoom": 16
+  },
+  "predictions": [
+    {
+      "quadkey": "1222032121322200",
+      "centroid": "SRID=4326;POINT (7.561340332031249 12.91622948639482)",
+      "predictions": {
+        "ml_prediction": 0.96773922925188,
+        "url": "http://localhost:1234/mapwithai?test=true&bbox=7.55859375,12.913552398609207,7.5640869140625,12.91890657418042"
+      }
+    },
+    {
+      "quadkey": "1222032121322202",
+      "centroid": "SRID=4326;POINT (7.56134033203125 12.91087525346386)",
+      "predictions": {
+        "ml_prediction": 0.96773922925188,
+        "url": "http://localhost:1234/mapwithai?test=true&bbox=7.55859375,12.908198108318514,7.5640869140625,12.913552398609207"
+      }
+    },
+    {
+      "quadkey": "1222032121322201",
+      "centroid": "SRID=4326;POINT (7.566833496093751 12.91622948639482)",
+      "predictions": {
+        "ml_prediction": 0.96773922925188,
+        "url": "http://localhost:1234/mapwithai?test=true&bbox=7.5640869140625,12.913552398609207,7.569580078125,12.91890657418042"
+      }
+    },
+    {
+      "quadkey": "1222032121322203",
+      "centroid": "SRID=4326;POINT (7.566833496093749 12.91087525346386)",
+      "predictions": {
+        "ml_prediction": 0.96773922925188,
+        "url": "http://localhost:1234/mapwithai?test=true&bbox=7.5640869140625,12.908198108318514,7.569580078125,12.913552398609207"
+      }
+    }
+  ]
+}
