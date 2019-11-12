@@ -101,3 +101,47 @@ def test_building_api_fetch():
     os.remove(outfile)
     assert(result.exit_code == 0)
     assert(current_results == expected_results)
+
+
+def test_mapwithai_road_stats_fetch():
+    server = MockServer(port=1234)
+    server.start()
+    mapwithai_api_response = json.load(open('ml_enabler/tests/fixtures/mapwithai_api_response.json'))
+    server.add_json_response('/mapwithai', mapwithai_api_response)
+    outfile = '/tmp/predict_fetch.json'
+    errfile = '/tmp/err.json'
+    endpoint = 'http://localhost:1234/v1/'
+    tile_url = 'http://localhost:1234/mapwithai?test=true'
+    runner = CliRunner()
+    result = runner.invoke(
+        main_group,
+        [
+            'fetch_predictions',
+            '--name',
+            'mapwithai_road_stats',
+            '--zoom',
+            16,
+            '--concurrency',
+            1,
+            '--bbox',
+            '7.5613403, 12.910875, 7.566833, 12.916229',
+            '--token',
+            'abc',
+            '--outfile',
+            outfile,
+            '--errfile',
+            errfile,
+            '--endpoint',
+            endpoint,
+            '--tile-url',
+            tile_url
+        ]
+    )
+    current_results = json.load(open(outfile))
+    expected_results = json.load(open('ml_enabler/tests/fixtures/mapwithai_road_stats_fetch_expected.json'))
+    expected_results['predictions'] = sorted(expected_results['predictions'], key=lambda p: p['quadkey'])
+    current_results['predictions'] = sorted(current_results['predictions'], key=lambda p: p['quadkey'])
+    server.shutdown_server()
+    os.remove(outfile)
+    assert(result.exit_code == 0)
+    assert(current_results == expected_results)
