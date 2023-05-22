@@ -8,7 +8,7 @@ setup(
         'Click',
         'numpy',
         'geopy',
-        'requests==2.22.0',
+        'requests==2.31.0',
         'mercantile==1.0.4',
         'aiohttp==3.5.4',
         'backoff==1.8.0',
